@@ -1,0 +1,10 @@
+DB_NAME = "imdb_3"
+
+GOOD_MOVIE = 8.0
+
+STARS_IN_MOVIE = 10
+MIN_VOTES_FOR_MOVIE = 50000
+
+DB_HOST = "localhost"
+DB_USER = "root"
+DB_PSW = "1234"
