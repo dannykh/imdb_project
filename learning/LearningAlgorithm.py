@@ -1,12 +1,13 @@
 import numpy as np
 from sklearn import cross_validation
 from utils import load_data
+from copy import deepcopy
 
 
-class Model(object):
-    def __init__(self):
-        self.classifier_copy = None
-        self.classifier = None
+class LearningAlgorithm(object):
+    def __init__(self, classifier=None):
+        self.classifier = classifier
+        self.classifier_copy = deepcopy(classifier)
 
     def train(self, data, tags):
         self.classifier.fit(data, tags)
@@ -23,7 +24,7 @@ class Model(object):
         return self.classifier.predict(vector)
 
     def kfcv(self, data, tags, k=5):
-        return cross_validation.cross_val_score(self.classifier_copy, data,
+        return cross_validation.cross_val_score(self.classifier, data,
             tags)
 
     def load_and_kfvc(self, load_from, tag_transform=lambda x: x, delimiter=',',
