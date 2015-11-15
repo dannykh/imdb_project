@@ -5,7 +5,7 @@ __author__ = 'Danny'
 from sklearn import tree, cross_validation, neighbors
 from sklearn.metrics import euclidean_distances as l2_dist
 import numpy as np
-from learning_utils import load_data
+from utils import load_data
 from numpy import correlate
 from scipy.stats.stats import pearsonr
 from math import sqrt

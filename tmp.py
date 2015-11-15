@@ -13,6 +13,14 @@ def test(id='3062729'):
     return gen.get_vector(mov)
 
 
+from learning.SVM import SVR
+
+
+def test_learning(data_path="data/MovieVector2/1/data_raw.csv"):
+    model = SVR()
+
+    return model.load_and_kfvc(data_path)
+
+
 import petl as etl
 import numpy as np
-
