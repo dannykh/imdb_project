@@ -9,6 +9,7 @@ from sklearn.pipeline import make_pipeline, Pipeline
 from sklearn.grid_search import GridSearchCV
 import learning.utils as utils
 
+
 def test(id='3062729'):
     cn = IMDB()
     mov = SqlMovie(imdb_conn=cn, sql_id=id, mode=1)
@@ -23,8 +24,10 @@ from learning.KNN import KNN
 
 def test_learning(data_path="data/MovieVector2/1/data_raw.csv"):
     model = SVR()
-    model.load_and_train(data_path)
-    print model.load_and_kfvc(data_path)
+    dat = utils.load_data(data_path)
+    data, tags = dat['data'], dat['tags']
+
+    print model.evaluate_comprehensive(data,tags)
 
 
 def test_lasso(data_path="data/MovieVector2/1/data_raw.csv"):
@@ -48,17 +51,17 @@ def test_ridge(data_path="data/MovieVector2/1/data_raw.csv"):
         param_grid={"ridge__alpha": alphas})
     alg = LearningAlgorithm(classifier)
 
-    res=utils.load_data(data_path)
-    data,tags=res['data'],res['tags']
+    res = utils.load_data(data_path)
+    data, tags = res['data'], res['tags']
 
     print(alg.classifier.estimator)
-    rng=[2]
-    return alg.kfcv(utils.select_cols(data,rng),tags)
+    rng = [2]
+    return alg.kfcv(utils.select_cols(data, rng), tags)
 
 
 import petl as etl
 import numpy as np
 
 if __name__ == "__main__":
-    # test_learning()
-    print test_ridge()
+    test_learning()
+    #print test_ridge()

@@ -2,7 +2,7 @@ import os
 
 
 class DataDirControl:
-    def __init__(self, dir_name, path="../data/"):
+    def __init__(self, dir_name, path="data/"):
         self.path = path + dir_name + "/"
         self.meta_path = self.path + "meta.txt"
         if not os.path.exists(self.path):

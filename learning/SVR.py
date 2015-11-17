@@ -14,7 +14,7 @@ class SVR(LearningAlgorithm):
              ("SVR", svm.SVR())])
         # GridSearch is an exhaustive search on classifier parameters
         # i.e tries all options to find best classifier
-        kernels = ['linear', 'rbf']
+        kernels = ['linear']
         self.classifier = GridSearchCV(self.pipeline,
             param_grid={"SVR__kernel": kernels})
         self.classifier_copy = deepcopy(self.classifier)

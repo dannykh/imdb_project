@@ -3,6 +3,11 @@ class MovieVectorError(Exception):
         self.message = "MovieVector <{}> : ".format(movie_id) + msg
 
 
+import numpy as np
+
+MISSING_FEAT = np.nan
+
+
 class MovieVectorGenerator(object):
     """
     An abstract movie vector generator. All generators should inherit this and

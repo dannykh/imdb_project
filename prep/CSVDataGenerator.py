@@ -94,11 +94,16 @@ class DataFileGenerator(object):
 from MovieVector_1 import MovieVectorGenerator1
 from MovieVector2 import MovieVectorGenerator2
 
-if __name__ == "__main__":
+
+def run():
     imdb = IMDB()
     vectorizer = MovieVectorGenerator2(imdb_conn=imdb)
 
     gen = DataFileGenerator(imdb)
     path = data_path = gen.generate_csv(vectorizer)
     # path = "../data/MovieVector2/4/data_raw.csv"
-    gen.generate_normalized(path)
+    # gen.generate_normalized(path))
+
+
+if __name__ == "__main__":
+    run()
