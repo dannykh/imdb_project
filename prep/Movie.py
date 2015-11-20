@@ -2,12 +2,12 @@ __author__ = 'Danny'
 
 
 class MovieError(Exception):
-    def __init__(self, movie_id,msg):
-        self.movie_id=movie_id
+    def __init__(self, movie_id, msg):
+        self.movie_id = movie_id
         self.message = "Movie <{}> : ".format(movie_id) + msg
 
 
-class Movie(object):
+class Movie(dict):
     def __init__(self):
         self.title = None
         self.year = None
@@ -19,9 +19,12 @@ class Movie(object):
         self.gross = None
         self.imdb_rating = None
         self.genres = None
-        self.budget=None
+        self.budget = None
+        self.actors = None
+        self.info = None
+        self.cast = None
 
-    def update(self, fields=None):
+    def update_fields(self, fields=None):
         raise NotImplementedError
 
     def get_imdb_rating(self):
@@ -38,6 +41,9 @@ class Movie(object):
 
     def get_stars(self):
         return self.stars
+
+    def get_actors(self):
+        return self.actors
 
     def get_budget(self):
         return self.budget

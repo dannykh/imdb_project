@@ -41,13 +41,23 @@ class MovieVectorGenerator(object):
         else:
             self.classifier = classifier
 
+        self._vectorizer = []
+        self.header=[x[0] for x in self._vectorizer]
+
     def get_vector(self, movie):
         """
         :param movie: Instance of an object derived from Movie
         :return: A vector representation of the movie. The first value is
                 the classification
         """
-        raise NotImplementedError
+        vec=[]
+        for key,method in self._vectorizer:
+            res=method(movie)
+            vec.append(np.nan if res is None else res)
+        return vec
+
+    def get_dict(self,movie):
+        return dict(zip(self.header,self.get_vector(movie)))
 
     def __repr__(self):
         return "MovieVector{}".format(self.version)

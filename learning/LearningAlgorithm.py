@@ -25,7 +25,7 @@ def get_evaluation(classifier, pred_X, y_true, eval_method):
     """
     y_pred = map(classifier.predict, pred_X)
 
-    return 1#eval_method(y_true, y_pred)
+    return eval_method(y_true, y_pred)
 
 
 class LearningAlgorithm(object):

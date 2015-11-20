@@ -3,8 +3,9 @@ from datetime import date
 DB_DATE = date(2015, 5, 6)
 ANFANG_DATE = date.min
 NULL_RATING = (None, 0)
-MIN_YEAR=ANFANG_DATE.year
-DB_YEAR=DB_DATE.year
+MIN_YEAR = ANFANG_DATE.year
+DB_YEAR = DB_DATE.year
+
 
 class Error(Exception):
     """Base class for exceptions in this module."""
@@ -55,9 +56,6 @@ class SizeError(Error):
         self.size = size
         self.msg = msg
 
-
-role_type = dict(actor=1, actress=2, producer=3, writer=4, composer=6,
-    director=8)
 
 movie_role = {
     "actor": 1,

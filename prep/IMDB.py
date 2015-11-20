@@ -4,7 +4,8 @@ from Person import Person
 import settings as db
 
 _queries = {
-    "get_all_movies": u"SELECT id,title,production_year FROM title;",
+    "get_all_movies": u"SELECT id,title,production_year FROM title "
+                      u"ORDER BY production_year ASC;",
     "search_movie": u"SELECT id FROM title WHERE title=\"{}\";",
     "search_person_indexed": u"SELECT id FROM name where name=\"{}\" AND"
                              u" imdb_index='{}' ;",
@@ -20,8 +21,8 @@ class IMDB:
     '''
 
     def __init__(self, host=db.DB_HOST, uname=db.DB_USER,
-                 password=db.DB_PSW, dbname=db.DB_NAME):
-        self.db=dbname
+            password=db.DB_PSW, dbname=db.DB_NAME):
+        self.db = dbname
         self.conn = SQLconnection(host, uname, password, dbname)
         self.conn.connect()
 
@@ -48,11 +49,15 @@ class IMDB:
     def update(self, obj):
         pass
 
-    def get_all_movies(self, query=None):
+    def get_all_movies(self, limit=None, query=None):
         if query is None:
             query = _queries["get_all_movies"]
         movie_ids = self.conn.fetch_query(query)
+        limit = 9999 if limit is None else limit
         for movie_id in movie_ids:
+            limit -= 1
+            if limit <= 0:
+                break
             yield self.get_movie(int(movie_id[0]), movie_id[1], movie_id[2])
 
     def fetch_scalar(self, query, *args):

@@ -8,3 +8,5 @@ MIN_VOTES_FOR_MOVIE = 50000
 DB_HOST = "localhost"
 DB_USER = "root"
 DB_PSW = "1234"
+
+LINEBREAK='\n'

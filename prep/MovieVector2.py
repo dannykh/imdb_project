@@ -27,7 +27,7 @@ class MovieVectorGenerator2(MovieVectorGenerator):
         simple_avg_count = self.NUM_ACTORS_AVGS
         if len(movie.get_stars()) < self.NUM_ACTORS_AVGS:
             simple_avg_count = self.NUM_ACTORS_AVGS - len(movie.get_stars())
-        movie_vec += [utils2.actor_movie_average(self.imdb_conn,
+        movie_vec += [utils2.star_movie_average(self.imdb_conn,
             actor_id, to_year=movie.year) for actor_id in
                       movie.get_stars()[:simple_avg_count]]
         movie_vec += [MISSING_FEAT] * (self.NUM_ACTORS_AVGS - simple_avg_count)

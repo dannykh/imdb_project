@@ -8,14 +8,14 @@ def get_all_genres(imdb_conn):
     return imdb_conn.fetch_vec(queries_2.genre['all_genres'])
 
 
-def actor_movie_average(imdb_conn, actor_id,
+def star_movie_average(imdb_conn, actor_id,
         from_year=consts.MIN_YEAR, to_year=consts.DB_YEAR,
         top_k=10, weights=None):
     if weights is None:
         weights = [1.0] * top_k
 
     actor_ratings = imdb_conn.fetch_vec(
-        queries_2.actor['star_rating_index'], actor_id, from_year,
+        queries_2.stars['star_rating_index'], actor_id, from_year,
         to_year)
     return average([float(x[0]) * weights[x[1]] for x in actor_ratings])
 
@@ -35,9 +35,3 @@ def get_genre_vec(movie, all_genres=None, conn=None):
         all_genres)
 
 
-def get_feature_subvector(data_generator, data_transformer, expected_len,
-        data_param_name, **args):
-    len = 0
-    feat_vec = []
-    for item in data_generator:
-        feat_vec += data_transformer(args)
