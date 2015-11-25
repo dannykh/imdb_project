@@ -64,11 +64,11 @@ class DataFileGenerator(object):
         end_time = monotonic()
         with open(data_dir + "about.txt", 'ab') as res_fp:
             res_fp.writelines(["\n",
-                               "Runtime : {}\n".format(
-                                   timedelta(seconds=end_time - start_time)),
-                               "total movies : {}\n".format(total),
-                               "Success count : {} \n".format(succ_num),
-                               "Fail count : {} \n".format(fail_num)])
+                "Runtime : {}\n".format(
+                    timedelta(seconds=end_time - start_time)),
+                "total movies : {}\n".format(total),
+                "Success count : {} \n".format(succ_num),
+                "Fail count : {} \n".format(fail_num)])
         print "DONE"
         return data_dir + "data_raw.csv"
 
@@ -76,8 +76,9 @@ class DataFileGenerator(object):
 from MovieVector_1 import MovieVectorGenerator1
 from MovieVector2 import MovieVectorGenerator2
 from MovieVector3 import MovieVectorGenerator3
+from MovieVector_y import MovieVectorGenerator_y
 
-movie_vec_ver = MovieVectorGenerator3
+movie_vec_ver = MovieVectorGenerator_y
 
 
 def run():
@@ -85,7 +86,8 @@ def run():
     vectorizer = movie_vec_ver(imdb_conn=imdb)
 
     gen = DataFileGenerator(imdb)
-    gen.generate_csv(vectorizer,limit=10)
+    limit = None
+    gen.generate_csv(vectorizer, limit=limit)
     # path = data_path = gen.generate_csv(vectorizer)
 
 

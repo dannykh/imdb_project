@@ -1,8 +1,9 @@
 from datetime import date
+import numpy
 
-DB_DATE = date(2015, 5, 6)
-ANFANG_DATE = date.min
-NULL_RATING = (None, 0)
+DB_DATE = 2015
+ANFANG_DATE = date.min.year
+NULL_RATING = numpy.nan
 
 
 class Error(Exception):
@@ -63,65 +64,65 @@ class PersonError(Error):
 avg_queries = {
     "person avg rating": \
         "SELECT avg(info), COUNT(info) FROM movie_info_idx WHERE "
-        "info_type_id = {} AND movie_id IN (" \
-        "SELECT movie_id FROM cast_info WHERE role_id = {} AND person_id = {} )"
+        "info_type_id = %s AND movie_id IN (" \
+        "SELECT movie_id FROM cast_info WHERE role_id IN %s AND person_id = %s )"
         " AND movie_id IN (" \
-        "SELECT id FROM title WHERE {} <= production_year AND {} > production_year)",
+        "SELECT id FROM title WHERE %s <= production_year AND %s > production_year)",
 
     "persons avg rating": \
-        "SELECT avg(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = {}"
+        "SELECT avg(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = %s"
         " AND movie_id IN (" \
-        "SELECT movie_id FROM cast_info WHERE role_id = {} AND person_id IN ({}) ) "
+        "SELECT movie_id FROM cast_info WHERE role_id IN %s AND person_id IN %s ) "
         "AND movie_id IN (" \
-        "SELECT id FROM title WHERE {} <= production_year AND {} > production_year)",
+        "SELECT id FROM title WHERE %s <= production_year AND %s > production_year)",
 
     "person-director avg rating": \
-        "SELECT AVG(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = {}"
+        "SELECT AVG(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = %s"
         " AND movie_id IN (" \
-        "SELECT movie_id FROM cast_info WHERE role_id = {} AND person_id = {} "
+        "SELECT movie_id FROM cast_info WHERE role_id IN %s AND person_id = %s "
         "AND movie_id IN (" \
-        "SELECT movie_id FROM cast_info WHERE role_id = {} AND person_id = {})) "
+        "SELECT movie_id FROM cast_info WHERE role_id IN %s AND person_id = %s)) "
         "AND movie_id IN (" \
-        "SELECT id FROM title WHERE {} <= production_year AND {} > production_year);",
+        "SELECT id FROM title WHERE %s <= production_year AND %s > production_year);",
 
     "actor in genre avg rating": \
-        "SELECT AVG(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = {} "
+        "SELECT AVG(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = %s "
         "AND movie_id IN (" \
-        "SELECT movie_id FROM cast_info WHERE role_id = {} AND person_id = {} "
+        "SELECT movie_id FROM cast_info WHERE role_id IN %s AND person_id = %s "
         "AND movie_id IN (" \
-        "SELECT movie_id FROM movie_info WHERE info_type_id = {} AND info = '{}')) "
+        "SELECT movie_id FROM movie_info WHERE info_type_id = %s AND info = %s)) "
         "AND movie_id IN (" \
-        "SELECT id FROM title WHERE {} <= production_year AND {} > production_year);",
+        "SELECT id FROM title WHERE %s <= production_year AND %s > production_year);",
 
     "actor in genres avg rating": \
-        "SELECT AVG(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = {} "
+        "SELECT AVG(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = %s "
         "AND movie_id IN (" \
-        "SELECT movie_id FROM cast_info WHERE role_id = {} AND person_id = {} "
+        "SELECT movie_id FROM cast_info WHERE role_id IN %s AND person_id = %s "
         "AND movie_id IN (" \
-        "SELECT movie_id FROM movie_info WHERE info_type_id = {} AND info IN ({}) ))"
+        "SELECT movie_id FROM movie_info WHERE info_type_id = %s AND info IN %s ))"
         " AND movie_id IN (" \
-        "SELECT id FROM title WHERE {} <= production_year AND {} > production_year);",
+        "SELECT id FROM title WHERE %s <= production_year AND %s > production_year);",
 
     "genre avg rating": \
-        "SELECT AVG(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = {} "
+        "SELECT AVG(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = %s "
         "AND movie_id IN (" \
-        "SELECT movie_id FROM movie_info WHERE info_type_id = {} AND info = '{}') "
+        "SELECT movie_id FROM movie_info WHERE info_type_id = %s AND info = %s) "
         "AND movie_id IN (" \
-        "SELECT id FROM title WHERE {} <= production_year AND {} > production_year);",
+        "SELECT id FROM title WHERE %s <= production_year AND %s > production_year);",
 
     "genres avg rating": \
-        "SELECT AVG(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = {} "
+        "SELECT AVG(info), COUNT(info) FROM movie_info_idx WHERE info_type_id = %s "
         "AND movie_id IN (" \
-        "SELECT movie_id FROM movie_info WHERE info_type_id = {} AND info IN ({}) )"
+        "SELECT movie_id FROM movie_info WHERE info_type_id = %s AND info IN %s )"
         " AND movie_id IN (" \
-        "SELECT id FROM title WHERE {} <= production_year AND {} > production_year);"
+        "SELECT id FROM title WHERE %s <= production_year AND %s > production_year);"
 }
 
 get_queries = {
-    "movie stars": "SELECT person_id , `index` FROM stars_temp where movie_id = {} "
+    "movie stars": "SELECT person_id , `index` FROM stars_temp where movie_id = %s "
                    "order by `index`;",
-    "movie participant": "SELECT person_id FROM cast_info where movie_id = {} "
-                         "AND role_id = {};"
+    "movie participant": "SELECT person_id FROM cast_info where movie_id = %s "
+                         "AND role_id IN %s;"
 }
 
 movie_role = {
@@ -177,14 +178,3 @@ role_actor_gender = {
 
 def year_to_date(year):
     return date(year, 1, 1)
-
-
-def combine_avg(ratings):
-    ratings_sum = ratings_num = 0
-    for rating in ratings:
-        if rating[1] > 0:
-            ratings_sum += rating[0] * rating[1]
-            ratings_num += rating[1]
-    if ratings_num == 0:
-        return None
-    return ratings_sum / ratings_num

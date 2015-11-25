@@ -8,9 +8,8 @@ from sklearn import svm, preprocessing, cross_validation, linear_model
 from sklearn.pipeline import make_pipeline, Pipeline
 from sklearn.grid_search import GridSearchCV
 import learning.utils as utils
-import mwparserfromhell as mw
-import pywikibot
-import wikipedia as wiki
+from prep.MovieVector_y import MovieVectorGenerator_y
+
 
 def test(id='3062729'):
     cn = IMDB()
@@ -18,7 +17,8 @@ def test(id='3062729'):
     # gen = MovieVectorGenerator2(imdb_conn=cn)
     mov.update()
 
-    return mov
+    gen = MovieVectorGenerator_y(cn)
+    return gen.get_vector(mov)
 
 
 from learning.SVR import SVR
@@ -35,7 +35,7 @@ def test_learning(data_path="data/MovieVector2/1/data_raw.csv"):
 
 def test_lasso(data_path="data/MovieVector2/1/data_raw.csv"):
     pipe = Pipeline([("scale", preprocessing.MinMaxScaler((-1, 1))),
-                     ("Lasso", linear_model.Lasso())])
+        ("Lasso", linear_model.Lasso())])
     alphas = [0.1, 1, 10]
     classifier = GridSearchCV(pipe,
         param_grid={"Lasso__alpha": alphas})
@@ -47,7 +47,7 @@ def test_lasso(data_path="data/MovieVector2/1/data_raw.csv"):
 
 def test_ridge(data_path="data/MovieVector2/1/data_raw.csv"):
     pipe = Pipeline([("scale", preprocessing.MinMaxScaler((-1, 1))),
-                     ("ridge", linear_model.Ridge())])
+        ("ridge", linear_model.Ridge())])
     alphas = [0.1]
 
     classifier = GridSearchCV(pipe,
@@ -61,9 +61,6 @@ def test_ridge(data_path="data/MovieVector2/1/data_raw.csv"):
     rng = [2]
     return alg.kfcv(utils.select_cols(data, rng), tags)
 
-
-import petl as etl
-import numpy as np
 
 if __name__ == "__main__":
     test_learning()

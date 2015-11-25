@@ -1,0 +1,456 @@
+ 2920970 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2850630 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 3274578 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2878009 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2334638 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 3052849 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2586372 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2752729 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2321506 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2746512 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2682302 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2673873 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2695838 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2497490 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2286609 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2755324 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2397652 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2706509 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2553857 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2623913 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2636546 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2422996 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2671418 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2759271 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2583688 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2552336 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2464801 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2689468 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2429020 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2327899 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 3207021 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2232246 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2961067 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 3193366 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2731570 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2237182 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 2695404 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 
+ 3071823 : <list index out of range> 
+ Traceback (most recent call last):
+  File "D:/work/AI_project/proj/prep/vector_file_generation.py", line 55, in generate_csv
+    movie_vec = movie_vectorizer.get_vector(movie)
+  File "D:\work\AI_project\proj\prep\MovieVector_y.py", line 39, in get_vector
+    return [x[1] for x in utils_y.vec_for_movie(self.imdb_conn, movie)]
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 268, in vec_for_movie
+    year) + stars_movie_vec(conn, stars, genres, director, year)
+  File "D:\work\AI_project\proj\prep\vector_utils_y.py", line 245, in stars_movie_vec
+    ("Star_%s avg rating" % i, a_rs[i][0]),
+IndexError: list index out of range
+ 

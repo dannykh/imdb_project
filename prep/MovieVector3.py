@@ -12,6 +12,22 @@ def get_field(movie, field):
     return np.nan
 
 
+def get_ith_star_avg(conn, movie, i):
+    print i
+    return utils2.get_actor_avg(conn, movie['stars'][i],
+        to_year=movie['year'])
+
+
+def get_star_avg_funcs(conn):
+    res = []
+    for i in xrange(0, 5):
+        print "#%s" % i
+        res.append(
+            ("star_avg_%s" % i,
+             lambda movie, i=i: get_ith_star_avg(conn, movie, i)))
+    return res
+
+
 class MovieVectorGenerator3(MovieVectorGenerator):
     def __init__(self, imdb_conn=None):
         self.version = 3
@@ -30,5 +46,6 @@ class MovieVectorGenerator3(MovieVectorGenerator):
             ('genres', lambda mov: get_field(mov, 'genres')),
             ('taglines', lambda mov: get_field(mov, 'taglines'))
         ]
+        self._vectorizer += (get_star_avg_funcs(self.imdb_conn))
 
         self.header = [x[0] for x in self._vectorizer]

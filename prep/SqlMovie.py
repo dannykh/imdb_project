@@ -14,7 +14,7 @@ _movie_queries = {
     "get_info_idx": "SELECT info FROM movie_info_idx WHERE info_type_id = %s "
                     "AND movie_id = %s;",
     "get_stars": "SELECT person_id FROM stars_temp WHERE "
-                 "movie_id=%s AND `index`<=5 ORDER BY `index` ASC;",
+                 "movie_id=%s AND `index`<=10 ORDER BY `index` ASC;",
     "get_actors": "SELECT person_id FROM cast_info WHERE movie_id=%s "
                   "AND role_id IN (1,2);",
     "get_cast_by_roles": "SELECT person_id,role_id FROM cast_info "

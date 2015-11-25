@@ -8,9 +8,10 @@ processed vectors, featurizing the movies. Order between movies should be kept
 
 from sklearn.base import TransformerMixin, BaseEstimator
 from sklearn.pipeline import Pipeline, FeatureUnion, make_pipeline
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OneHotEncoder, Imputer
 from sklearn.feature_extraction import DictVectorizer
 import numpy as np
+
 
 class InfoExtractor(TransformerMixin, BaseEstimator):
     """
@@ -54,13 +55,23 @@ genre_featurizer = Pipeline([
     ('info_extractor', InfoExtractor('genres')),
     ('genre_transform', GenreTransformer()),
     ('dict_vectorizer', DictVectorizer())
-    #('scale', ScaleBinary((-1, 1)))
+    # ('scale', ScaleBinary((-1, 1)))
 ])
 
+
+class AllFeaturesSimple(TransformerMixin, BaseEstimator):
+    def fit(self, *_):
+        return self
+
+    def transform(self, data):
+        return data.iloc[:, 1:].values
+
+
 features = FeatureUnion([
-    ("title", make_pipeline(InfoExtractor('title'))),
-    ("rating", make_pipeline(InfoExtractor('rating')))
-    #("genres", genre_featurizer)
+    # ("title", make_pipeline(InfoExtractor('title'))),
+    # ("rating", make_pipeline(InfoExtractor('rating')))
+    # ("genres", genre_featurizer)
+    ('All', make_pipeline(AllFeaturesSimple())),
 ])
 
 

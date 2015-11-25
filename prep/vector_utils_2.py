@@ -35,3 +35,7 @@ def get_genre_vec(movie, all_genres=None, conn=None):
         all_genres)
 
 
+def get_actor_avg(imdb_conn, actor_id,
+        from_year=consts.MIN_YEAR, to_year=consts.DB_YEAR):
+    return imdb_conn.fetch_scalar(queries_2.actor['actor_avg'],
+        actor_id, from_year, to_year)
