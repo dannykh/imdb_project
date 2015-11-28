@@ -11,7 +11,7 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 file_name = "results_with_normalization_scaling_guess1.csv"
 
-data_dir = '../data/MovieVector4/9_dan_full/'
+data_dir = '../data/MovieVector4/1_yoni/'
 data_file = data_dir + 'data_raw.csv'
 
 PREDICTABLE = ['rating', 'success', 'category']
@@ -50,26 +50,20 @@ from sklearn.preprocessing import Imputer
 for estimator_name, estimator in estimators:
     pipeline = Pipeline([
         ('feature_extractor', features),
-        ('Imputer', Imputer()),
-        ('normalization', StandardScaler()),
-        ('scaling', MinMaxScaler((-1, 1))),
         ('estimator', estimator)
     ])
     pipeline.fit(train, train['rating'])
-    print "%s %s "%estimator_name%estimator.coef_
     with open(data_dir + "/tmp_%s.csv" % estimator_name, 'wb', 0) as fp:
         writer = csv.writer(fp)
-        writer.writerow(['true','predicted'])
-        pred=pipeline.predict(test)
-        tru=test['rating']
-        for pr,tr in zip(pred,tru):
-            writer.writerow([tr,pr])
+        writer.writerow(['true', 'predicted'])
+        pred = pipeline.predict(test)
+        tru = test['rating']
+        for pr, tr in zip(pred, tru):
+            writer.writerow([tr, pr])
 
-    """
     with open(data_dir + file_name, 'ab') as fp:
         writer = csv.writer(fp)
         pred = pipeline.predict(test)
         true_res = test['rating']
         row = [estimator_name] + [met[1](pred, true_res) for met in metrics]
         writer.writerow(row)
-    """

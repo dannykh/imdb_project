@@ -8,9 +8,10 @@ processed vectors, featurizing the movies. Order between movies should be kept
 
 from sklearn.base import TransformerMixin, BaseEstimator
 from sklearn.pipeline import Pipeline, FeatureUnion, make_pipeline
-from sklearn.preprocessing import OneHotEncoder, Imputer
+from sklearn.preprocessing import OneHotEncoder, Imputer, StandardScaler
 from sklearn.feature_extraction import DictVectorizer
 import numpy as np
+import pandas as pd
 
 
 class InfoExtractor(TransformerMixin, BaseEstimator):
@@ -47,10 +48,6 @@ class ScaleBinary(TransformerMixin, BaseEstimator):
         return [map(lambda x: self.range[int(x)], rw) for rw in data]
 
 
-# class QueryMap(TransformerMixin, BaseEstimator):
-
-
-
 genre_featurizer = Pipeline([
     ('info_extractor', InfoExtractor('genres')),
     ('genre_transform', GenreTransformer()),
@@ -59,48 +56,53 @@ genre_featurizer = Pipeline([
 ])
 
 
-class AllFeaturesSimple(TransformerMixin, BaseEstimator):
+class Averages(TransformerMixin, BaseEstimator):
     def fit(self, *_):
         return self
 
     def transform(self, data):
-        return data.iloc[:, 1:].values
+        return data.iloc[:, 1:]
 
 
-features = FeatureUnion([
-    # ("title", make_pipeline(InfoExtractor('title'))),
-    # ("rating", make_pipeline(InfoExtractor('rating')))
-    # ("genres", genre_featurizer)
-    ('All', make_pipeline(AllFeaturesSimple())),
+class AddControl(TransformerMixin, BaseEstimator):
+    def fit(self, *_):
+        return self
+
+    def transform(self, data):
+        def binarizer(val):
+            return -1 if pd.isnull(val) else 1
+
+        controls_funcs = [
+            ('director_nan', 'director avg rating')
+        ]
+
+        controls = {}
+        for ctrl_nm, ctrl_col in controls_funcs:
+            controls.update({ctrl_nm: [binarizer(x) for x in data[ctrl_col]]})
+
+        return pd.DataFrame(controls)
+
+
+avgs = Pipeline([
+    ('avg_get', Averages()),
+    ('Imputer', Imputer()),
+    ('normalization', StandardScaler())
 ])
 
+features = FeatureUnion([
+    ('avgs_simple', avgs),
+    ('controls', AddControl())
+])
 
-def just_transforms(feat, X):
-    """Applies all transforms to the data, without applying last
-       estimator.
-
-    Parameters
-    ----------
-    X : iterable
-        Data to predict on. Must fulfill input requirements of first step of
-        the pipeline.
-    """
-    Xt = X
-    for name, transform in feat.steps:
-        Xt = transform.fit_transform(Xt)
-    return Xt
 
 
 if __name__ == "__main__":
     from IMDB import IMDB
 
-    conn = IMDB()
-    movies = []
-    for mov in conn.get_all_movies(limit=3):
-        try:
-            mov.update()
-            movies += [mov]
-        except Exception, e:
-            pass
+    data_dir = '../data/MovieVector4/1_yoni/'
+    data_file = data_dir + 'data_raw.csv'
+    data = pd.io.parsers.read_csv(data_file)
 
-    print features.fit_transform(movies)
+    res = pd.DataFrame(features.fit_transform(data))
+
+    res.to_csv(data_dir + 'with_controls.csv')
