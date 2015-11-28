@@ -9,7 +9,7 @@ import csv
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
-file_name = "results_with_normalization_scaling.csv"
+file_name = "results_with_normalization_scaling_guess1.csv"
 
 data_dir = '../data/MovieVector4/9_dan_full/'
 data_file = data_dir + 'data_raw.csv'
@@ -23,6 +23,8 @@ TEST_SIZE = 0.2
 # Test on NEW movies !
 train, test = data.head(int(N_SAMPLES * (1 - TEST_SIZE))), data.tail(
     int(N_SAMPLES * TEST_SIZE))
+
+print len(train)
 
 estimators = [
     ("Dummy", dummy.DummyRegressor()),
@@ -54,10 +56,20 @@ for estimator_name, estimator in estimators:
         ('estimator', estimator)
     ])
     pipeline.fit(train, train['rating'])
+    print "%s %s "%estimator_name%estimator.coef_
+    with open(data_dir + "/tmp_%s.csv" % estimator_name, 'wb', 0) as fp:
+        writer = csv.writer(fp)
+        writer.writerow(['true','predicted'])
+        pred=pipeline.predict(test)
+        tru=test['rating']
+        for pr,tr in zip(pred,tru):
+            writer.writerow([tr,pr])
 
+    """
     with open(data_dir + file_name, 'ab') as fp:
         writer = csv.writer(fp)
         pred = pipeline.predict(test)
         true_res = test['rating']
         row = [estimator_name] + [met[1](pred, true_res) for met in metrics]
         writer.writerow(row)
+    """
