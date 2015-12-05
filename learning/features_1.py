@@ -8,7 +8,7 @@ processed vectors, featurizing the movies. Order between movies should be kept
 
 from sklearn.base import TransformerMixin, BaseEstimator
 from sklearn.pipeline import Pipeline, FeatureUnion, make_pipeline
-from sklearn.preprocessing import OneHotEncoder, Imputer, StandardScaler
+from sklearn.preprocessing import OneHotEncoder, Imputer, StandardScaler,MinMaxScaler
 from sklearn.feature_extraction import DictVectorizer
 import numpy as np
 import pandas as pd
@@ -86,18 +86,19 @@ class AddControl(TransformerMixin, BaseEstimator):
 avgs = Pipeline([
     ('avg_get', Averages()),
     ('Imputer', Imputer()),
-    ('normalization', StandardScaler())
+    ('normalization', StandardScaler()),
+    ('scaling',MinMaxScaler((-1,1)))
 ])
 
 features = FeatureUnion([
-    ('avgs_simple', avgs),
-    ('controls', AddControl())
+    ('avgs_simple', avgs)
+    #('controls', AddControl())
 ])
 
 
 
 if __name__ == "__main__":
-    from IMDB import IMDB
+    from prep.IMDB import IMDB
 
     data_dir = '../data/MovieVector4/1_yoni/'
     data_file = data_dir + 'data_raw.csv'

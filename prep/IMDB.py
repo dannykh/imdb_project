@@ -1,6 +1,5 @@
 from SQLconnection import SQLconnection
 from SqlMovie import SqlMovie
-from Person import Person
 import settings as db
 
 _queries = {
@@ -26,8 +25,6 @@ class IMDB:
         self.conn = SQLconnection(host, uname, password, dbname)
         self.conn.connect()
 
-    def get_person(self, id):
-        return Person(self.conn, id)
 
     def search_person(self, name, index):
         if index is None or index == -1:

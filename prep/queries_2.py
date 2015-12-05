@@ -18,7 +18,7 @@ genre = {
     "avg_rating": "SELECT AVG(rating),COUNT(rating) FROM movie_year_rating,movie_info_all "
                   "WHERE info_type_id=3 AND movie_year_rating.id=movie_info_all.movie_id "
                   "AND info IN %s "
-                  "AND %s < year AND year <= %s;"
+                  "AND %s < year AND year < %s;"
 }
 
 director = {
@@ -34,7 +34,7 @@ actor = {
                  "WHERE cast_info.person_id= %s AND role_id IN (1,2) "
                  "AND movie_year_rating.id = cast_info.movie_id "
                  "AND %s < movie_year_rating.year "
-                 "AND movie_year_rating.year <%s ;",
+                 "AND movie_year_rating.year < %s ;",
 
     "in_genres_avg": "SELECT AVG(rating),COUNT(rating) "
                      "FROM movie_year_rating,movie_info_all,cast_info "
@@ -42,7 +42,7 @@ actor = {
                      "AND cast_info.role_id IN (1,2) "
                      "AND movie_year_rating.id=movie_info_all.movie_id "
                      "AND cast_info.movie_id=movie_year_rating.id "
-                     "AND info IN %s AND %s < year AND year <= %s ;"
+                     "AND info IN %s AND %s < year AND year < %s ;"
 }
 
 person = {
@@ -62,7 +62,7 @@ person = {
                      "AND cast_info.role_id IN %s "
                      "AND movie_year_rating.id=movie_info_all.movie_id "
                      "AND cast_info.movie_id=movie_year_rating.id "
-                     "AND info IN %s AND %s < year AND year <= %s ;"
+                     "AND info IN %s AND %s < year AND year < %s ;"
 }
 
 combined = {
@@ -76,5 +76,5 @@ combined = {
                                   "AND c2.person_id = %s "
                                   "AND  c2.role_id=8 "
                                   "AND c1.movie_id = c2.movie_id ) "
-                                  "AND %s < year AND year <= %s ;"
+                                  "AND %s < year AND year < %s ;"
 }

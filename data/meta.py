@@ -5,16 +5,18 @@ class DataDirControl:
     def __init__(self, dir_name, path="../data/"):
         self.path = path + dir_name + "/"
         self.meta_path = self.path + "meta.txt"
+        self.version_path = None
         if not os.path.exists(self.path):
             os.mkdir(self.path)
             self.init_meta()
 
     def create_version(self, version=None):
         if version is None:
-            version = self.get_last_i()+1
-        ver_path=self.path+str(version)+"/"
+            version = self.get_last_i() + 1
+        ver_path = self.path + str(version) + "/"
         os.mkdir(ver_path)
         self.increment_last()
+        self.version_path = ver_path
         return ver_path
 
     def get_meta_line(self, option):
@@ -54,3 +56,9 @@ class DataDirControl:
     def init_meta(self):
         with open(self.meta_path, 'wb') as fp:
             fp.writelines(['last-0\n', 'best-0\n'])
+
+    def get_file(self, name, in_version=True):
+        if not in_version:
+            return self.path + name
+        else:
+            return self.version_path + name

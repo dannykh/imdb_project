@@ -1,7 +1,7 @@
 from MovieVector import MovieVectorGenerator, MovieVectorError
 from IMDB import IMDB
 import vector_utils_2 as utils2
-import vector_utils_y as utils_y
+import vector_utils_y_changed as utils_y
 import numpy as np
 
 

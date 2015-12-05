@@ -1,9 +1,9 @@
-DB_NAME = "imdb_3"
+DB_NAME = "imdb"
 
 GOOD_MOVIE = 8.0
 
 STARS_IN_MOVIE = 10
-MIN_VOTES_FOR_MOVIE = 50000
+MIN_VOTES_FOR_MOVIE = 5000
 
 DB_HOST = "localhost"
 DB_USER = "root"

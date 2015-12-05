@@ -26,7 +26,7 @@ _movie_queries = {
 }
 
 
-class SqlMovie(Movie):
+class SqlMovie(dict):
     def __init__(self, imdb_conn, sql_id, title=None, year=None, mode=0):
         super(SqlMovie, self).__init__()
         if id is None and title is None:
@@ -43,6 +43,9 @@ class SqlMovie(Movie):
 
     def __getattr__(self, item):
         return self[item]
+
+    def __getstate__(self):
+        return self.__dict__
 
     def update_fields(self, fields=None):
         self.load_cast()

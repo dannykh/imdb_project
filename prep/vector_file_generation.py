@@ -44,16 +44,16 @@ class DataFileGenerator(object):
                 open(data_dir + "failed.txt", 'wb', 0) as fail_fp, \
                 open(data_dir + "data_raw.csv", 'wb', 0) as data_fp:
             csv_writer = csv.writer(data_fp)
-            csv_writer.writerow(movie_vectorizer.header)
+            csv_writer.writerow(['id'] + movie_vectorizer.header)
             for movie in movie_generator:
                 if limit <= 0:
                     break
                 limit -= 1
                 total += 1
                 try:
-                    movie.update_fields()
+                    #movie.update_fields()
                     movie_vec = movie_vectorizer.get_vector(movie)
-                    csv_writer.writerow(movie_vec)
+                    csv_writer.writerow([movie['id']] + movie_vec)
                     succ_num += 1
                 except Exception, e:
                     fail_num += 1
@@ -78,7 +78,7 @@ from MovieVector2 import MovieVectorGenerator2
 from MovieVector3 import MovieVectorGenerator3
 from MovieVector_y import MovieVectorGenerator_y
 
-movie_vec_ver = MovieVectorGenerator_y
+movie_vec_ver = MovieVectorGenerator1
 
 
 def run():

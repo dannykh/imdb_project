@@ -204,8 +204,8 @@ def stars_movie_vec(conn, stars, genres, director, year):
         # actor = conn.get_person(star)
         a_r = exp_wrp_sq(person_avg_rating, False, year,
             imdb=conn, id=star, role=(1, 2))
-        ad_r = exp_wrp_sq(person_avg_rating, False, year,
-            imdb=conn, id=star, role=(1, 2))
+        ad_r = exp_wrp_sq(actor_director_avg_rating, False, year,
+            imdb=conn, actor_id=star, director_id=director)
         ag_r = exp_wrp_sq(person_genres_avg_rating, False, year,
             imdb=conn, id=star, role=(1, 2), genres=genres)
 
