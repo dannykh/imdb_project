@@ -1,5 +1,5 @@
 from imdb_sql_consts import *
-from queries_1 import avg_queries, get_queries
+from prep.queries.queries_1 import avg_queries, get_queries
 
 
 def get_movie_stars(imdb, movie_id):

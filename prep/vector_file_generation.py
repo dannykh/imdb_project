@@ -1,13 +1,11 @@
-from data.meta import DataDirControl
-from IMDB import IMDB
-import os
-from MovieVector import MovieVectorError
-import traceback
 import csv
+import traceback
 from datetime import timedelta
+
 from monotonic import monotonic
-import pandas as pd
-import numpy as np
+
+from IMDB import IMDB
+from data.meta import DataDirControl
 
 
 class DataFileGenerator(object):
@@ -73,10 +71,7 @@ class DataFileGenerator(object):
         return data_dir + "data_raw.csv"
 
 
-from MovieVector_1 import MovieVectorGenerator1
-from MovieVector2 import MovieVectorGenerator2
-from MovieVector3 import MovieVectorGenerator3
-from MovieVector_y import MovieVectorGenerator_y
+from prep.movie_vector.MovieVector_1 import MovieVectorGenerator1
 
 movie_vec_ver = MovieVectorGenerator1
 

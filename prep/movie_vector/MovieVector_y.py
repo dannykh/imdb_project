@@ -1,8 +1,6 @@
-from MovieVector import MovieVectorGenerator, MovieVectorError
-from IMDB import IMDB
-import vector_utils_2 as utils2
-import vector_utils_y_changed as utils_y
-import numpy as np
+import prep.movie_vector.vector_utils_y_changed as utils_y
+from MovieVector import MovieVectorGenerator
+from prep.IMDB import IMDB
 
 
 class MovieVectorGenerator_y(MovieVectorGenerator):

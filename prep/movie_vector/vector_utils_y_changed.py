@@ -1,9 +1,4 @@
-import queries_1
-import imdb_sql_consts as imdb_sql_consts
-from imdb_consts import *
-from numpy import average
-from MovieVector import MovieVectorError
-import queries_2
+from prep.imdb_consts import *
 
 
 def combine_avg(ratings):

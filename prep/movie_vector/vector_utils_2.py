@@ -1,7 +1,8 @@
-import queries_2
-import imdb_sql_consts as consts
 from numpy import average
-from MovieVector import MovieVectorError
+
+import prep.imdb_sql_consts as consts
+from prep.movie_vector.MovieVector import MovieVectorError
+from prep.queries import queries_2
 
 
 def get_all_genres(imdb_conn):

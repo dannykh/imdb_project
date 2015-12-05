@@ -1,9 +1,8 @@
-from os import utime
-
-from MovieVector import MovieVectorGenerator, MovieVectorError, MISSING_FEAT
-from IMDB import IMDB
-import vector_utils_2 as utils2
 import numpy as np
+
+import prep.movie_vector.vector_utils_2 as utils2
+from MovieVector import MovieVectorGenerator, MISSING_FEAT
+from prep.IMDB import IMDB
 
 
 class MovieVectorGenerator2(MovieVectorGenerator):

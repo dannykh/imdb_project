@@ -1,7 +1,7 @@
 from MovieVector import MovieVectorError, MovieVectorGenerator
-from IMDB import IMDB
-import imdb_sql_consts
-from utils import vec_for_movie
+from prep.IMDB import IMDB
+import prep.imdb_sql_consts
+from prep.utils import vec_for_movie
 
 
 class MovieVectorGenerator1(MovieVectorGenerator):

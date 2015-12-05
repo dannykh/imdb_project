@@ -1,7 +1,8 @@
-from MovieVector import MovieVectorGenerator, MovieVectorError
-from IMDB import IMDB
-import vector_utils_2 as utils2
 import numpy as np
+
+import prep.movie_vector.vector_utils_2 as utils2
+from MovieVector import MovieVectorGenerator
+from prep.IMDB import IMDB
 
 
 def get_field(movie, field):
