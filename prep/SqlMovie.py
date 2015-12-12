@@ -3,7 +3,7 @@ from Movie import Movie, MovieError
 from imdb_sql_consts import movie_role, info_type
 
 _movie_queries = {
-    "get_movie_main": "SELECT title,production_year FROM title WHERE id=%s;",
+    "get_movie_main": "SELECT * FROM movie WHERE id=%s;",
     "get_movie_all": "",
     "get_rating": "SELECT rating from movie_year_rating WHERE movie_id=%s;",
     "get_full_cast": "SELECT id,role_id FROM cast_info WHERE movie_id=%s;",
@@ -27,17 +27,16 @@ _movie_queries = {
 
 
 class SqlMovie(dict):
-    def __init__(self, imdb_conn, sql_id, title=None, year=None, mode=0):
-        super(SqlMovie, self).__init__()
-        if id is None and title is None:
-            raise MovieError(self.id, "Need either id or name")
+    def __init__(self, imdb_conn, sql_id, mode=0, **kwrags):
+        super(dict, self).__init__()
+        if kwrags is not None:
+            for key in kwrags:
+                self[key] = kwrags[key]
         self._conn = imdb_conn
         self.id = sql_id
         self['id'] = self.id
-        self['title'], self['year'] = title, year
-        if title is None or year is None:
-            self['title'], self['year'] = self._fetch_scalar("get_movie_main",
-                self.id)
+        self['id'], self['title'], self['year'], self['imdb_index'], \
+            self['rating'], self['votes'] = self._fetch_scalar("get_movie_main", sql_id)
         if mode == 1:
             self.update_fields()
 
@@ -52,13 +51,6 @@ class SqlMovie(dict):
         self.load_info()
         self.get_stars()
         self._normalize()
-
-    def get_imdb_rating(self):
-        if self.imdb_rating is None:
-            self.imdb_rating = self._fetch_scalar("get_info_idx",
-                info_type[
-                    'rating'], self.id)
-        return self.imdb_rating
 
     def get_stars(self):
         if not self.has_key('stars'):
@@ -101,7 +93,7 @@ class SqlMovie(dict):
 
         def __create_dict_entry(key, *aliases):
             return {key: [p[0] for p in tmp_cast if
-                          p[1] in (movie_role[nm] for nm in aliases)]}
+                p[1] in (movie_role[nm] for nm in aliases)]}
 
         self.update(__create_dict_entry("actors", 'actor', 'actress'))
         self.update(__create_dict_entry("directors", 'director'))
@@ -111,8 +103,7 @@ class SqlMovie(dict):
 
     def load_info(self,
             single_infos=(
-                    'gross', 'budget', 'plot', 'rating', 'weekend gross',
-                    'studios'),
+                    'gross', 'budget', 'plot', 'weekend gross', 'studios'),
             multi_infos=('genres', 'keywords', 'taglines')):
         infos = single_infos + multi_infos
         tmp_info = self._fetch_vec("get_info", self.id,

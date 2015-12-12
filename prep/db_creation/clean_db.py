@@ -33,27 +33,42 @@ outdated = [
     "`info` TEXT NOT NULL,"
     "`note` TEXT NULL DEFAULT NULL,"
     "PRIMARY KEY (`id`))"
+    "ENGINE = MyISAM;",
+
+    "CREATE TABLE `imdb`.`stars_temp` ("
+    "`id` INT(11) NOT NULL,"
+    "`movie_id` INT(11) NOT NULL,"
+    "`person_id` INT(11) NOT NULL,"
+    "`index` INT(11) NOT NULL,"
+    "PRIMARY KEY (`id`))"
     "ENGINE = MyISAM;"
 ]
 
 table_creation = [
 
-    "CREATE TABLE `imdb`.`movies` ("
+    "CREATE TABLE `movie` ("
     "`id` INT(11) NOT NULL,"
     "`title` TEXT NOT NULL,"
     "`production_year` INT(11) NOT NULL,"
     "`imdb_index` VARCHAR(12) NULL DEFAULT NULL,"
+    "`imdb_id` INT(11) NULL DEFAULT NULL,"
     "`rating` TEXT NOT NULL,"
     "`votes` TEXT NOT NULL,"
+    "PRIMARY KEY (`id`))"
+    "ENGINE = MyISAM;",
+
+    "CREATE TABLE `stars` ("
+    "`id` INT(11) NOT NULL AUTO_INCREMENT,"
+    "`movie_id` INT(11) NOT NULL,"
+    "`person_id` INT(11) NOT NULL,"
+    "`index` INT(11) NOT NULL,"
     "PRIMARY KEY (`id`))"
     "ENGINE = MyISAM;"
 
 ]
 
 table_fill = [
-    "INSERT INTO movie_info_all SELECT * FROM movie_info;",
-    "INSERT INTO movie_info_all SELECT * FROM movie_info_idx;",
-    "INSERT INTO movies SELECT title.id,title,production_year,imdb_index,m1.info, m2.info"
+    "INSERT INTO movie SELECT title.id,title,production_year,imdb_index,imdb_id,m1.info, m2.info"
     " FROM title,movie_info_idx as m1,movie_info_idx as m2 "
     "WHERE title.id= m1.movie_id AND title.id=m2.movie_id "
     "AND m1.info_type_id=101 AND m2.info_type_id=100;"
@@ -66,20 +81,20 @@ def run_queries(conn, queries):
         try:
             conn.execute_delete_query(q)
         except Exception, e:
-            print "^ NOT EXECUTED"
+            print "^ NOT EXECUTED , %s", e
 
 
-if __name__ == "__main__":
+def clean():
     conn = SQLconnection(db.DB_HOST, db.DB_USER, db.DB_PSW, db.DB_NAME)
     conn.connect()
 
-    """
-    run_queries(conn,delete_queries)
-    run_queries(conn,optimize_queries)
-
-    run_queries(conn,table_creation)
-
+    run_queries(conn, delete_queries)
+    run_queries(conn, optimize_queries)
+    run_queries(conn, table_creation)
     run_queries(conn, table_fill)
-    """
 
-conn.disconnect()
+    conn.disconnect()
+
+
+if __name__ == "__main__":
+    clean()

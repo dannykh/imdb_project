@@ -26,7 +26,7 @@ class SQLconnection():
 
     def execute_query(self, query, *args):
         self.cursor.execute(query, args)
-        # print self.cursor._last_executed
+        #print self.cursor._last_executed
         return self.cursor.lastrowid
 
     def fetch_query(self, query, *args):

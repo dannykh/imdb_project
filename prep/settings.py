@@ -1,4 +1,5 @@
 DB_NAME = "imdb"
+DB_URI = 'mysql://root:1234@localhost/'+DB_NAME
 
 GOOD_MOVIE = 8.0
 

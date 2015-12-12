@@ -102,6 +102,20 @@ info_type = {
 
 }
 
+company_type = {
+    'distributors': 1,
+    'production companies': 2,
+    'special effects companies': 3,
+    'miscellaneous companies': 4
+
+}
+
+link_type = {
+    'follows': 1,
+    'followed by': 2,
+    'remake of': 3
+}
+
 role_actor_gender = {
     "m": movie_role["actor"],
     "f": movie_role["actress"]

@@ -1,5 +1,7 @@
 __author__ = 'Danny'
 
+from prep.imdb_sql_consts import movie_role, info_type, company_type, link_type
+
 
 class MovieError(Exception):
     def __init__(self, movie_id, msg):
@@ -7,49 +9,153 @@ class MovieError(Exception):
         self.message = "Movie <{}> : ".format(movie_id) + msg
 
 
+_movie_queries = {
+    "get_movie_main": "SELECT * FROM movie WHERE id=%s;",
+    "get_rating": "SELECT rating from movie_year_rating WHERE movie_id=%s;",
+    "get_full_cast": "SELECT id,role_id FROM cast_info WHERE movie_id=%s;",
+    "get_cast_by_role": "SELECT person_id FROM cast_info WHERE movie_id=%s "
+                        "AND role_id=%s;",
+    "get_info_old": "SELECT info FROM movie_info WHERE info_type_id = %s "
+                    "AND movie_id = %s;",
+    "get_info_idx": "SELECT info FROM movie_info_idx WHERE info_type_id = %s "
+                    "AND movie_id = %s;",
+    "get_stars": "SELECT person_id FROM stars WHERE movie_id=%s  "
+                 "ORDER BY `index` ASC;",
+    "get_actors": "SELECT person_id FROM cast_info WHERE movie_id=%s "
+                  "AND role_id IN (1,2);",
+    "get_cast_by_roles": "SELECT person_id,role_id FROM cast_info "
+                         "WHERE movie_id=%s AND role_id IN %s ;",
+    "get_info": "SELECT info,info_type_id FROM movie_info WHERE movie_id = %s "
+                "AND info_type_id IN %s;",
+    "get_cast_full": "SELECT person_id,role_id FROM cast_info WHERE "
+                     "movie_id = %s ;",
+    "get_keywords": "SELECT keyword FROM keyword,movie_keyword "
+                    "WHERE movie_id = %s AND keyword_id=keyword.id;",
+    "get_companies": "SELECT company_id,company_type_id FROM movie_companies "
+                     "WHERE movie_id = %s ;",
+    "get_links": "SELECT linked_movie_id, link_type_id FROM movie_link "
+                 "WHERE movie_id= %s AND link_type_id IN (1,2,3); "
+
+}
+
+
 class Movie(dict):
-    def __init__(self):
-        self.title = None
-        self.year = None
-        self.id = None
-        self.stars = None
-        self.directors = None
-        self.writers = None
-        self.producers = None
-        self.gross = None
-        self.imdb_rating = None
-        self.genres = None
-        self.budget = None
-        self.actors = None
-        self.info = None
-        self.cast = None
+    _keys = [
+        'id',
+        'title',
+        'year',
+        'rating',
+        'votes',
+        'genres',
+        'budget',
+        'imdb id',
+        'imdb index',
+        'gross',
+        'weekend gross',
+        'stars',
+        'actors',
+        'directors',
+        'writers',
+        'producers',
+        'cinematographers',
+        'follows',
+        'followed by',
+        'remake of',
+        'production companies',
+        'special effects companies',
+        'distributors',
+        'taglines',
+        'keywords',
+        'studios',
+        'runtimes',
+        'languages',
+        'composers',
+        'costume designers',
+        'editors',
+        'production designers'
+    ]
 
-    def update_fields(self, fields=None):
-        raise NotImplementedError
+    def __init__(self, imdb_conn, sql_id, load=None):
+        self.conn = imdb_conn
+        for key in self._keys:
+            self[key] = None
+        self['id'] = sql_id
+        if not load is None:
+            for key, val in load.iteritems():
+                if key in self._keys:
+                    self[key] = val
+        else:
+            self.populate()
 
-    def get_imdb_rating(self):
-        return self.imdb_rating
+    def populate(self):
+        self._get_basic_data()
+        self._get_cast()
+        self._get_info()
+        self._get_keywords()
+        self._get_companies()
+        self._get_links()
+        self._normalize()
 
-    def get_producers(self):
-        return self.producers
+    def _get_basic_data(self):
+        self['id'], self['title'], self['year'], self['imdb index'], self['imdb id'], \
+            self['rating'], self['votes'] = self.conn.fetch_scalar(
+            _movie_queries['get_movie_main'], self['id'])
 
-    def get_directors(self):
-        return self.directors
+    def _get_cast(self):
+        cast = self.conn.fetch_vec(_movie_queries['get_cast_full'], self['id'])
 
-    def get_gross(self):
-        return self.gross
+        def __get_by_roles(*args):
+            ids = [movie_role[role] for role in args]
+            return [person[0] for person in cast if person[1] in ids]
 
-    def get_stars(self):
-        return self.stars
+        self['actors'] = __get_by_roles('actor', 'actress')
+        self['directors'] = __get_by_roles('director')
+        self['producers'] = __get_by_roles('producer')
+        self['cinematographers'] = __get_by_roles('cinematographer')
+        self['composers'] = __get_by_roles('composer')
+        self['costume designers'] = __get_by_roles('costume designer')
+        self['writers'] = __get_by_roles('writer')
+        self['production designers'] = __get_by_roles('production designer')
+        self['editors'] = __get_by_roles('editor')
 
-    def get_actors(self):
-        return self.actors
+        self['stars'] = self.conn.fetch_vec(_movie_queries['get_stars'], self['id'])
 
-    def get_budget(self):
-        return self.budget
+    def _get_info(self):
+        info_ids = [(info, info_type[info]) for info in self._keys if
+            info_type.has_key(info)]
+
+        all_info = self.conn.fetch_vec(_movie_queries['get_info'], self['id'],
+            tuple(x[1] for x in info_ids))
+
+        for info, info_id in info_ids:
+            if self[info] is None:
+                self[info] = [rec[0] for rec in all_info if rec[1] == info_id]
+
+    def _get_keywords(self):
+        self['keywords'] = self.conn.fetch_vec(_movie_queries['get_keywords'], self['id'])
+
+    def _get_companies(self):
+        companies = self.conn.fetch_vec(_movie_queries['get_companies'], self['id'])
+
+        for company, company_type_id in company_type.iteritems():
+            if company in self._keys:
+                self[company] = [comp[0] for comp in companies if
+                    comp[1] == company_type_id]
+
+    def _get_links(self):
+        links = self.conn.fetch_vec(_movie_queries['get_links'], self['id'])
+
+        for link, link_id in link_type.iteritems():
+            self[link] = [ln[0] for ln in links if link[1] == link_id]
+
+    def _normalize(self):
+        def __unlist(key):
+            if type(self[key]) is list:
+                self[key] = self[key][0] if self[key] else None
+
+        singles = ['gross', 'weekend gross', 'budget']
+        for x in singles:
+            __unlist(x)
 
     def __repr__(self):
-        return self.name + " (" + self.year + "). id=" + self.id
-
-    def get_genres(self):
-        return self.genres
+        return self['title'] + " (" + str(self['year']) + "). id=" + str(self['id'])

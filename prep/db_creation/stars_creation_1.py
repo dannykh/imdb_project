@@ -1,5 +1,5 @@
 from prep.IMDB import IMDB
-import imdb as imdbpy
+from imdb import IMDb
 from itertools import permutations
 from prep.imdb_consts import PersonError
 import sys
@@ -26,7 +26,6 @@ def normalize_name(name):
 
 
 def try_name_permutations(name):
-    print name
     name_vec = name.split(',')
     name_vec = name_vec[0].split(' ') + name_vec[1].split(' ')
     name_vec.remove('')
@@ -88,7 +87,7 @@ def process_movie(http_conn, imdb, movie, log_fp, fail_fp, id):
 
 
 def process_all_movies():
-    http_conn = imdbpy()
+    http_conn = IMDb()
     imdb = IMDB()
     movies_query = "SELECT id FROM title WHERE id NOT IN " \
                    "(SELECT movie_id from stars_temp);"
@@ -105,7 +104,7 @@ def process_all_movies():
 
 
 def process_missing_movies():
-    http_conn = imdbpy()
+    http_conn = IMDb()
     imdb = IMDB()
     query_max_id = "SELECT MAX(id) from stars_temp ;"
     id = imdb.fetch_scalar(query_max_id)[0]
