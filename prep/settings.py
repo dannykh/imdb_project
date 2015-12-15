@@ -1,5 +1,5 @@
 DB_NAME = "imdb"
-DB_URI = 'mysql://root:1234@localhost/'+DB_NAME
+DB_URI = 'mysql://root:1234@localhost/' + DB_NAME
 
 GOOD_MOVIE = 8.0
 
@@ -10,4 +10,4 @@ DB_HOST = "localhost"
 DB_USER = "root"
 DB_PSW = "1234"
 
-LINEBREAK='\n'
+LINEBREAK = '\n'

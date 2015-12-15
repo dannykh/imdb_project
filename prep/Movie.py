@@ -1,6 +1,7 @@
 __author__ = 'Danny'
 
 from prep.imdb_sql_consts import movie_role, info_type, company_type, link_type
+import re
 
 
 class MovieError(Exception):
@@ -34,7 +35,10 @@ _movie_queries = {
     "get_companies": "SELECT company_id,company_type_id FROM movie_companies "
                      "WHERE movie_id = %s ;",
     "get_links": "SELECT linked_movie_id, link_type_id FROM movie_link "
-                 "WHERE movie_id= %s AND link_type_id IN (1,2,3); "
+                 "WHERE movie_id= %s AND link_type_id IN (1,2,3); ",
+    "get_mpaa": "SELECT info FROM movie_info WHERE movie_id = %s AND info_type_id=97;",
+    "get_actors_ordered": "SELECT person_id FROM actors WHERE movie_id = %s "
+                          "ORDER BY `index` ASC ;"
 
 }
 
@@ -65,6 +69,7 @@ class Movie(dict):
         'special effects companies',
         'distributors',
         'taglines',
+        'mpaa',
         'keywords',
         'studios',
         'runtimes',
@@ -94,12 +99,13 @@ class Movie(dict):
         self._get_keywords()
         self._get_companies()
         self._get_links()
+        self._get_actors()
         self._normalize()
 
     def _get_basic_data(self):
         self['id'], self['title'], self['year'], self['imdb index'], self['imdb id'], \
             self['rating'], self['votes'] = self.conn.fetch_scalar(
-            _movie_queries['get_movie_main'], self['id'])
+                _movie_queries['get_movie_main'], self['id'])
 
     def _get_cast(self):
         cast = self.conn.fetch_vec(_movie_queries['get_cast_full'], self['id'])
@@ -108,7 +114,6 @@ class Movie(dict):
             ids = [movie_role[role] for role in args]
             return [person[0] for person in cast if person[1] in ids]
 
-        self['actors'] = __get_by_roles('actor', 'actress')
         self['directors'] = __get_by_roles('director')
         self['producers'] = __get_by_roles('producer')
         self['cinematographers'] = __get_by_roles('cinematographer')
@@ -125,7 +130,7 @@ class Movie(dict):
             info_type.has_key(info)]
 
         all_info = self.conn.fetch_vec(_movie_queries['get_info'], self['id'],
-            tuple(x[1] for x in info_ids))
+                tuple(x[1] for x in info_ids))
 
         for info, info_id in info_ids:
             if self[info] is None:
@@ -146,9 +151,16 @@ class Movie(dict):
         links = self.conn.fetch_vec(_movie_queries['get_links'], self['id'])
 
         for link, link_id in link_type.iteritems():
-            self[link] = [ln[0] for ln in links if link[1] == link_id]
+            self[link] = [ln[0] for ln in links if ln[1] == link_id]
+
+    def _get_actors(self):
+        self['actors'] = self.conn.fetch_vec(_movie_queries['get_actors_ordered'],
+                self['id'])
 
     def _normalize(self):
+        # TODO convert currencies
+        self['mpaa'] = [info.split(' ')[1] for info in self['mpaa']]
+
         def __unlist(key):
             if type(self[key]) is list:
                 self[key] = self[key][0] if self[key] else None
@@ -156,6 +168,12 @@ class Movie(dict):
         singles = ['gross', 'weekend gross', 'budget']
         for x in singles:
             __unlist(x)
+
+        monetary = ['gross', 'weekend gross', 'budget']
+        for key in monetary:
+            if self.has_key(key) and self[key] is not None and self[key]:
+                m = re.findall(r"([1-9][0-9,]+(\.\d)?)", self[key])
+                self[key] = float(''.join(m[0][0].split(',')))
 
     def __repr__(self):
         return self['title'] + " (" + str(self['year']) + "). id=" + str(self['id'])

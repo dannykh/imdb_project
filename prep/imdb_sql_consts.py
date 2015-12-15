@@ -75,8 +75,10 @@ movie_role = {
 
 info_type = {
     "runtimes": 1,
+    "color info": 2,
     "genres": 3,
     "languages": 4,
+    "countries": 8,
     "taglines": 9,
     "keywords": 10,
     "soundtrack": 14,
@@ -86,6 +88,8 @@ info_type = {
     "birth date": 21,
     "height": 22,
     "death date": 23,
+    "book": 92,
+    "mpaa": 97,
     "plot": 98,
     "votes distribution": 99,
     "votes": 100,

@@ -122,7 +122,10 @@ get_queries = {
     "movie stars": "SELECT person_id , `index` FROM stars_temp where movie_id = %s "
                    "order by `index`;",
     "movie participant": "SELECT person_id FROM cast_info where movie_id = %s "
-                         "AND role_id IN %s;"
+                         "AND role_id IN %s;",
+    "movies where stared": "SELECT year, movie_stars.index, rating FROM movieyearrating INNER JOIN movie_stars ON movieyearrating.id = movie_stars.movie_id where person_id = %s ORDER BY year DESC;",
+     "info": "SELECT info FROM movie_info WHERE movie_id = %s AND info_type_id = %s"
+
 }
 
 movie_role = {
@@ -169,6 +172,34 @@ info_type = {
     "bottom 10 rank": 113,
 
 }
+
+movie_genres = [
+    "Drama",
+    "Short",
+    "Comedy",
+    "Mystery",
+    "Documentary",
+    "Romance",
+    "Thriller",
+    "Action",
+    "Crime",
+    "Horror",
+    "Animation",
+    "Family",
+    "Adventure",
+    "Fantasy",
+    "Mystery",
+    "Sci-Fi",
+    "Musical",
+    "War",
+    "Music",
+    "Western",
+    "History",
+    "Biography",
+    "Adult",
+    "Sport",
+    "News"
+]
 
 role_actor_gender = {
     "m": movie_role["actor"],
