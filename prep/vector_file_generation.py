@@ -49,7 +49,6 @@ class DataFileGenerator(object):
                 limit -= 1
                 total += 1
                 try:
-                    #movie.update_fields()
                     movie_vec = movie_vectorizer.get_vector(movie)
                     csv_writer.writerow([movie['id']] + movie_vec)
                     succ_num += 1

@@ -1,6 +1,8 @@
 from SQLconnection import SQLconnection
 from SqlMovie import SqlMovie
 import settings as db
+from Movie import Movie
+import cPickle as pkl
 
 _queries = {
     "get_all_movies": u"SELECT id FROM title ORDER BY production_year ASC LIMIT %s;",
@@ -24,6 +26,7 @@ class IMDB:
         self.db = dbname
         self.conn = SQLconnection(host, uname, password, dbname)
         self.conn.connect()
+        self._movie_db = None
 
     def search_person(self, name, index):
         if index is None or index == -1:
@@ -42,24 +45,20 @@ class IMDB:
             query = _queries['search_movie_with_year'].format(name, year)
         return self.conn.fetch_scalar(query)
 
-    def update(self, obj):
-        pass
-
     def get_all_movie_ids(self, limit=None):
         limit = 99999 if limit is None else limit
         return self.fetch_vec(_queries["get_all_movies"], limit)
 
-    def get_all_movies(self, limit=None):
-        movie_ids = self.get_all_movie_ids(limit=limit)
-        for movie_id in movie_ids:
-            limit -= 1
-            if limit <= 0:
-                break
-            yield self.get_movie(int(movie_id))
+    def get_all_movies(self, pkl_path='../data/movies.pkl', limit=None):
+        if self._movie_db is None:
+            with open(pkl_path, 'rb') as fp:
+                self._movie_db = pkl.load(fp)
 
-    def get_all_persons(self, limit=None):
-        limit = 99999 if limit is None else limit
-        return self.fetch_vec(_queries["get_all_persons"], limit)
+        for i, movie_dict in enumerate(self._movie_db):
+            if not limit is None:
+                if i == limit:
+                    break
+            yield Movie(self, movie_dict['id'], movie_dict)
 
     def fetch_scalar(self, query, *args):
         return self.conn.fetch_scalar(query, *args)
@@ -69,3 +68,12 @@ class IMDB:
 
     def execute_query(self, query, *args):
         return self.conn.execute_query(query, *args)
+
+
+if __name__ == "__main__":
+    conn = IMDB()
+    i=0
+    for res in conn.get_all_movies():
+        i+=1
+        print res
+    print i
