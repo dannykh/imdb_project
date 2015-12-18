@@ -5,7 +5,7 @@ from prep.IMDB import IMDB
 from prep.Movie import Movie
 
 
-def test(id='3062729'):
+def test(id='3309523'):
     cn = IMDB()
     mov = Movie(imdb_conn=cn, sql_id=id)
     # gen = MovieVectorGenerator2(imdb_conn=cn)

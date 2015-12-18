@@ -92,6 +92,12 @@ class Movie(dict):
         else:
             self.populate()
 
+    def __getattr__(self, item):
+        if not self.has_key(item):
+            raise KeyError
+
+        return self[item]
+
     def populate(self):
         self._get_basic_data()
         self._get_cast()
