@@ -4,6 +4,7 @@ from prep.IMDB import IMDB
 from vector_utils_4 import get_movie_features
 
 HEADER = [
+    'Rating',
     'Year',
     'Star_1 Is Male',
     'Star_1 Years of Acting',
@@ -24,30 +25,25 @@ HEADER = [
     'writer avg rating',
     'composer avg rating',
     'Is Drama',
-    'Is Short',
     'Is Comedy',
-    'Is Mystery',
-    'Is Documentary',
-    'Is Romance',
     'Is Thriller',
+    'Is Romance',
     'Is Action',
     'Is Crime',
-    'Is Horror',
-    'Is Animation',
-    'Is Family',
     'Is Adventure',
-    'Is Fantasy',
-    'Is Mystery',
+    'Is Horror',
     'Is Sci-Fi',
-    'Is Musical',
-    'Is War',
-    'Is Music',
-    'Is Western',
-    'Is History',
+    'Is Mystery',
+    'Is Fantasy',
+    'Is Family',
     'Is Biography',
-    'Is Adult',
+    'Is War',
+    'Is Animation',
+    'Is History',
+    'Is Music',
     'Is Sport',
-    'Is News'
+    'Is Musical',
+    'Is Documentary'
 ]
 
 class MovieVectorGenerator_y(MovieVectorGenerator):

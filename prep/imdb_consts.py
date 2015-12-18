@@ -173,7 +173,7 @@ info_type = {
 
 }
 
-movie_genres = [
+movie_genres_old = [
     "Drama",
     "Short",
     "Comedy",
@@ -200,6 +200,30 @@ movie_genres = [
     "Sport",
     "News"
 ]
+
+movie_genres = [
+    "Drama",
+    "Comedy",
+    "Thriller",
+    "Romance",
+    "Action",
+    "Crime",
+    "Adventure",
+    "Horror",
+    "Sci-Fi",
+    "Mystery",
+    "Fantasy",
+    "Family",
+    "Biography",
+    "War",
+    "Animation",
+    "History",
+    "Music",
+    "Sport",
+    "Musical",
+    "Documentary"
+]
+
 
 role_actor_gender = {
     "m": movie_role["actor"],

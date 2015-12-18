@@ -234,6 +234,7 @@ def get_movie_features(imdb, movie_id, movie=None):
     directors_string = string_out_of_list(directors)
     stars = movie['stars']
 
-    return  get_general_movie_feats(imdb, movie) \
+    return [('Rating', movie['rating'])] \
+          + get_general_movie_feats(imdb, movie) \
           + get_stars_feats(imdb, stars, directors_string, movie['year']) \
           + get_crew_avg_feats(imdb, movie) + bin_genre_feats(movie['genres']) #bin_lang_feats(movie['languages'])
