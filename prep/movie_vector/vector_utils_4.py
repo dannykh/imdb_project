@@ -1,14 +1,13 @@
 __author__ = 'Yonatan'
 
-from coefficients_guess import calc_smart_avg
-from generate_actor_data_csvs import AvgMaker
-from numpy import nan
-
-import prep.imdb_sql_consts as imdb_sql_consts
-from prep.SqlMovie import SqlMovie
-from prep.imdb_consts import \
+import imdb_sql_consts as imdb_sql_consts
+from imdb_consts import \
     InputError, DB_DATE, movie_role, info_type, movie_genres
-from prep.queries.y_queries import dream_queries
+from y_queries import dream_queries
+from Movie import Movie
+from coefficients_guess import calc_smart_avg
+#from generate_actor_data_csvs import AvgMaker
+from numpy import nan
 
 YEAR_OPT_COEF = [0.55,0.3,0.1,0.05]
 
@@ -21,6 +20,22 @@ CREW = [
 # Utils Functions
 #------------------------------------------------------------------------------ 
 
+class AvgMaker(object):
+    """Average Calculator"""
+    def __init__(self, items=[], are_float = False):
+        if len(items) > 0:
+             nums = [item if are_float else float(item) for item in items]
+             self.sum = sum(nums)
+             self.n = len(items)
+        else:
+            self.sum = 0
+            self.n = 0
+    def add(self, item, is_float=False):
+        self.sum += float(item) if not is_float else item
+        self.n += 1
+    def avg(self):
+        return nan if self.n == 0 else format(self.sum/self.n, '.2f')
+
 def _fetch_query_dream(imdb, query_name, *args):
     return imdb.conn.fetch_query(dream_queries[query_name], *args)
 
@@ -32,14 +47,15 @@ def mat_to_list(mat):
 def get_person_movies(imdb, id, role):
     # Should be later from a Person Dictionary
     movies_ids = mat_to_list(_fetch_query_dream(imdb, "person movies", id, role))
-    movies = [SqlMovie(imdb,id) for id in movies_ids]
+    movies = [Movie(imdb,id[0]) for id in movies_ids]
     return movies
 
 
 def get_due_movies(imdb, ids, roles):
     if len(ids)!=2 or len(roles)!= 2:
         raise InputError([ids,roles], "ids and roles size should be 2")
-    movies = mat_to_list(_fetch_query_dream(imdb, "due movies", *(ids+roles)))
+    movies_ids = mat_to_list(_fetch_query_dream(imdb, "due movies", *(ids+roles)))
+    movies = [Movie(imdb, id) for id in movies_ids]
     return movies
 
  
@@ -55,7 +71,7 @@ def date_to_age(date, to_year=DB_DATE):
 
 
 def person_gender(imdb, id):
-    return _fetch_query_dream(imdb, "person gender", id)[0][0]
+    return 1 if _fetch_query_dream(imdb, "person gender", id)[0][0]== 'm' else -1
 
 
 def get_years_of_career(imdb, movies, current_year):
@@ -100,10 +116,10 @@ def regular_avg(movies):
 
 
 def avg_rating(imdb, movies, to_year):
-    #TODO: change to Movie io SqlMovie
-    
+    #TODO: change to Movie io Movie
+
     # delete the movies that is not before this one
-    for movie in movies: 
+    for movie in movies:
         if movie['year'] >= to_year:
             movies.remove(movie)
     # TODO: change avg function
@@ -139,7 +155,8 @@ def due_avg_movies(imdb, ids, roles, to_year=DB_DATE):
 def bin_genre_feats(genres):
     genre_feats = []
     for genre in movie_genres:
-        genre_feats += ("Is "+genre, 1 if genre in genres else 0)
+        genre_feats += [("Is "+genre, 1 if genre in genres else -1)]
+    return genre_feats
 
 def bin_lang_feats(langs):
     # TODO: this function
@@ -147,8 +164,8 @@ def bin_lang_feats(langs):
 
 def star_feats(imdb, star, i, director, year):
     feats_names = [
-        "Star_%s Age",
-        "Star_%s Height",
+        #"Star_%s Age",
+        #"Star_%s Height",
         "Star_%s Is Male",
         "Star_%s Years of Acting",
         "Star_%s Number of Movies", 
@@ -158,26 +175,31 @@ def star_feats(imdb, star, i, director, year):
     ]
     feats_names = [feat_name %i for feat_name in feats_names]
 
-    if star == nan:
+    if star == -1:
         return zip(feats_names,[nan]*len(feats_names))
 
-    star_gender = person_gender(imdb, star)
-    role = movie_role["actor"] if star_gender == 'm' else movie_role["actress"]
-    movies = get_person_movies(imdb, id, role)
-    
+    try:
+        star_gender = person_gender(imdb, star)
+        role = movie_role["actor"] if star_gender == 1 else movie_role["actress"]
+    except Exception:
+        star_gender = 0
+        role =  '%s, %s'%(movie_role["actor"], movie_role["actress"])
+
+    movies = get_person_movies(imdb, star, role)
     return zip(feats_names, [
-            date_to_age(get_info(imdb, star, "birth date")),
-            get_info(imdb, star, "height"),
-            True if star_gender=='m' else False,
+            #date_to_age(get_info(imdb, star, "birth date")),
+            #get_info(imdb, star, "height"),
+            1 if star_gender=='m' else -1,
             get_years_of_career(imdb, movies, year),
             len(movies),
-            person_avg_rating(imdb, id, role),
+            person_avg_rating(imdb, star, role),
             due_avg_movies(imdb, [star, director], [role, movie_role["director"]])
         ])
 
 
 def get_stars_feats(imdb, stars, director, year):
     stars_feats = []
+    stars = (stars+[-1]*3)[0:3]
     for i in xrange(3):
         stars_feats += star_feats(imdb, stars[i], i+1, director, year)
     for i in xrange(3):
@@ -194,23 +216,24 @@ def get_general_movie_feats(imdb, movie):
         ("Year", movie['year']),
         #("MPAA", nan),
         #("Budget", nan),
-        ("Runtime", movie['runtime'])
+        #("Runtime", movie['runtimes'])
     ]
 
 def get_crew_avg_feats(imdb, movie):
     return [("%s avg rating"%crew_type,
-             person_avg_rating(imdb, string_out_of_list(movie[crew_type]), movie_role[crew_type], movie['year'])
+             person_avg_rating(imdb, string_out_of_list(movie[crew_type+'s']), movie_role[crew_type], movie['year'])
              ) for crew_type in CREW]
 
 
 
 def get_movie_features(imdb, movie_id, movie=None):
     if movie == None:
-        movie = SqlMovie(imdb, movie_id)
+        movie = Movie(imdb, movie_id)
+    print movie['title']
     directors = movie['directors']
     directors_string = string_out_of_list(directors)
     stars = movie['stars']
 
     return  get_general_movie_feats(imdb, movie) \
           + get_stars_feats(imdb, stars, directors_string, movie['year']) \
-          + get_crew_avg_feats(imdb, movie) + bin_genre_feats(movie['genres']) + bin_lang_feats(movie['languages'])
+          + get_crew_avg_feats(imdb, movie) + bin_genre_feats(movie['genres']) #bin_lang_feats(movie['languages'])

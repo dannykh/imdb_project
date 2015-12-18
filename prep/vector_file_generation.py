@@ -54,9 +54,9 @@ class DataFileGenerator(object):
                     succ_num += 1
                 except Exception, e:
                     fail_num += 1
-                    log_fp.write(" {} : <{}> \n {} \n".format(movie.id, e,
+                    log_fp.write(" {} : <{}> \n {} \n".format(movie['id'], e,
                         traceback.format_exc()))
-                    fail_fp.write(str(movie.id) + "\n")
+                    fail_fp.write(str(movie['id']) + "\n")
 
         end_time = monotonic()
         with open(data_dir + "about.txt", 'ab') as res_fp:
@@ -70,14 +70,14 @@ class DataFileGenerator(object):
         return data_dir + "data_raw.csv"
 
 
-from prep.movie_vector.MovieVector_1 import MovieVectorGenerator1
+from prep.movie_vector.MovieVector_y import MovieVectorGenerator_y
 
-movie_vec_ver = MovieVectorGenerator1
+movie_vec_ver = MovieVectorGenerator_y
 
 
 def run():
     imdb = IMDB()
-    vectorizer = movie_vec_ver(imdb_conn=imdb)
+    vectorizer = movie_vec_ver()
 
     gen = DataFileGenerator(imdb)
     limit = None

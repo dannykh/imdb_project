@@ -71,7 +71,7 @@ def date_to_age(date, to_year=DB_DATE):
 
 
 def person_gender(imdb, id):
-    return _fetch_query_dream(imdb, "person gender", id)[0][0]
+    return 1 if _fetch_query_dream(imdb, "person gender", id)[0][0]== 'm' else -1
 
 
 def get_years_of_career(imdb, movies, current_year):
@@ -155,7 +155,7 @@ def due_avg_movies(imdb, ids, roles, to_year=DB_DATE):
 def bin_genre_feats(genres):
     genre_feats = []
     for genre in movie_genres:
-        genre_feats += ("Is "+genre, 1 if genre in genres else 0)
+        genre_feats += [("Is "+genre, 1 if genre in genres else -1)]
     return genre_feats
 
 def bin_lang_feats(langs):
@@ -164,8 +164,8 @@ def bin_lang_feats(langs):
 
 def star_feats(imdb, star, i, director, year):
     feats_names = [
-        "Star_%s Age",
-        "Star_%s Height",
+        #"Star_%s Age",
+        #"Star_%s Height",
         "Star_%s Is Male",
         "Star_%s Years of Acting",
         "Star_%s Number of Movies", 
@@ -175,19 +175,21 @@ def star_feats(imdb, star, i, director, year):
     ]
     feats_names = [feat_name %i for feat_name in feats_names]
 
-    if star == nan:
+    if star == -1:
         return zip(feats_names,[nan]*len(feats_names))
 
-    star_gender = person_gender(imdb, star)
-    role = movie_role["actor"] if star_gender == 'm' else movie_role["actress"]
-    print i
-    if i==3:
-        print "STOP!"
+    try:
+        star_gender = person_gender(imdb, star)
+        role = movie_role["actor"] if star_gender == 1 else movie_role["actress"]
+    except Exception:
+        star_gender = 0
+        role =  '%s, %s'%(movie_role["actor"], movie_role["actress"])
+
     movies = get_person_movies(imdb, star, role)
     return zip(feats_names, [
-            date_to_age(get_info(imdb, star, "birth date")),
-            get_info(imdb, star, "height"),
-            True if star_gender=='m' else False,
+            #date_to_age(get_info(imdb, star, "birth date")),
+            #get_info(imdb, star, "height"),
+            1 if star_gender=='m' else -1,
             get_years_of_career(imdb, movies, year),
             len(movies),
             person_avg_rating(imdb, star, role),
@@ -197,6 +199,7 @@ def star_feats(imdb, star, i, director, year):
 
 def get_stars_feats(imdb, stars, director, year):
     stars_feats = []
+    stars = (stars+[-1]*3)[0:3]
     for i in xrange(3):
         stars_feats += star_feats(imdb, stars[i], i+1, director, year)
     for i in xrange(3):
@@ -213,7 +216,7 @@ def get_general_movie_feats(imdb, movie):
         ("Year", movie['year']),
         #("MPAA", nan),
         #("Budget", nan),
-        ("Runtime", movie['runtimes'])
+        #("Runtime", movie['runtimes'])
     ]
 
 def get_crew_avg_feats(imdb, movie):
@@ -226,6 +229,7 @@ def get_crew_avg_feats(imdb, movie):
 def get_movie_features(imdb, movie_id, movie=None):
     if movie == None:
         movie = Movie(imdb, movie_id)
+    print movie['title']
     directors = movie['directors']
     directors_string = string_out_of_list(directors)
     stars = movie['stars']

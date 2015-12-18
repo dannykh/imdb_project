@@ -3,7 +3,7 @@ __author__ = 'Yonatan'
 
 dream_queries = {
 	"person movies": \
-		"SELECT movie_id FROM cast_info WHERE person_id IN (%s) AND role_id = %s",
+		"SELECT movie_id FROM cast_info WHERE person_id IN (%s) AND role_id IN (%s)",
 	"due movies": \
 		"SELECT cast_1.movie_id FROM cast_info as cast_1 \
 		INNER JOIN cast_info as cast_2 ON cast_1.movie_id = cast_2.movie_id \
