@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import pandas as pd
-from sklearn import svm, neighbors, tree, dummy
+from sklearn import svm, neighbors, tree, dummy, linear_model
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import classification_report, mean_absolute_error, \
     mean_squared_error, median_absolute_error, r2_score
@@ -19,13 +19,19 @@ RAW_RATING_OUTPUT = False
 base_d = "../"
 
 data_files = [
-    'data/MovieVector4/1_yoni/data_raw.csv'
+    'data/MovieVector4/Parts/rating.csv',
+    #'data/MovieVector4/Parts/basic_data.csv',
+    #'data/MovieVector4/Parts/bin_data.csv',
+    #'data/MovieVector4/Parts/reg_avg.csv'#,
+    #'data/MovieVector4/Parts/y_avg.csv',
+    'data/MovieVector4/Parts/y_v_avg.csv'
 ]
 
 TEST_SIZE = 0.2
 
 estimators = [
     ("Dummy", dummy.DummyRegressor()),
+    ("Least Squares", linear_model.LinearRegression()),
     ("SVR_linear", svm.SVR(kernel='linear', cache_size=1000)),
     ("SVR_rbf", svm.SVR(kernel='rbf', cache_size=1000)),
     ("KNN", KNeighborsRegressor()),
