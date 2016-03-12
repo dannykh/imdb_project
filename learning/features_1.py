@@ -61,7 +61,7 @@ class Averages(TransformerMixin, BaseEstimator):
         return self
 
     def transform(self, data):
-        return data.iloc[:, 1:]
+        return data.iloc[:, 2:]
 
 
 class AddControl(TransformerMixin, BaseEstimator):

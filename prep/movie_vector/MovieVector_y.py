@@ -1,9 +1,10 @@
 import prep.movie_vector.vector_utils_y_changed as utils_y
 from MovieVector import MovieVectorGenerator
 from prep.IMDB import IMDB
-from vector_utils_4 import get_movie_features
+from prep.vector_utils_4 import get_movie_features, get_stars_avg_prio
+#from vector_utils_4 import get_movie_features
 
-HEADER = [
+HEADER_1 = [
     'Rating',
     'Year',
     'Star_1 Is Male',
@@ -46,12 +47,16 @@ HEADER = [
     'Is Documentary'
 ]
 
+HEADER_2 = ['Star_1 Smart Avg', 'Star_1 - Director Smart Avg', 'Star_2 Smart Avg', 'Star_2 - Director Smart Avg', 'Star_3 Smart Avg', 'Star_3 - Director Smart Avg', 'Stars 1 & 2', 'Stars 1 & 3', 'Stars 2 & 3', 'director smart avg rating', 'writer smart avg rating', 'composer smart avg rating']
+
+HEADER = ['Star_1 a Avg', 'Star_1 s Avg', 'Star_1 a y Avg', 'Star_1 s y Avg', 'Star_1 a- Director Avg', 'Star_1 s- Director Avg', 'Star_1 a- Director y Avg', 'Star_1 s- Director y Avg', 'Star_2 a Avg', 'Star_2 s Avg', 'Star_2 a y Avg', 'Star_2 s y Avg', 'Star_2 a- Director Avg', 'Star_2 s- Director Avg', 'Star_2 a- Director y Avg', 'Star_2 s- Director y Avg', 'Star_3 a Avg', 'Star_3 s Avg', 'Star_3 a y Avg', 'Star_3 s y Avg', 'Star_3 a- Director Avg', 'Star_3 s- Director Avg', 'Star_3 a- Director y Avg', 'Star_3 s- Director y Avg']
+
 class MovieVectorGenerator_y(MovieVectorGenerator):
     def __init__(self, imdb_conn=None):
         self.version = 4
         self.imdb_conn = IMDB() if imdb_conn is None else imdb_conn
 
-        self.header = HEADER
+        self.header = HEADER_2
 
     def get_vector(self, movie):
         """

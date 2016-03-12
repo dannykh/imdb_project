@@ -119,11 +119,12 @@ def avg_rating(imdb, movies, to_year):
     #TODO: change to Movie io Movie
 
     # delete the movies that is not before this one
+    prev_movies = []
     for movie in movies:
-        if movie['year'] >= to_year:
-            movies.remove(movie)
+        if movie['year'] < to_year:
+            prev_movies += [movie]
     # TODO: change avg function
-    return regular_avg(movies)
+    return regular_avg(prev_movies)
 
 
 #------------------------------------------------------------------------------
@@ -192,8 +193,8 @@ def star_feats(imdb, star, i, director, year):
             1 if star_gender=='m' else -1,
             get_years_of_career(imdb, movies, year),
             len(movies),
-            person_avg_rating(imdb, star, role),
-            due_avg_movies(imdb, [star, director], [role, movie_role["director"]])
+            person_avg_rating(imdb, star, role ,year),
+            due_avg_movies(imdb, [star, director], [role, movie_role["director"]], year)
         ])
 
 

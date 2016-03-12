@@ -43,6 +43,7 @@ class DataFileGenerator(object):
                 open(data_dir + "data_raw.csv", 'wb', 0) as data_fp:
             csv_writer = csv.writer(data_fp)
             csv_writer.writerow(['id'] + movie_vectorizer.header)
+
             for movie in movie_generator:
                 if limit <= 0:
                     break
@@ -63,6 +64,8 @@ class DataFileGenerator(object):
             res_fp.writelines(["\n",
                 "Runtime : {}\n".format(
                     timedelta(seconds=end_time - start_time)),
+
+
                 "total movies : {}\n".format(total),
                 "Success count : {} \n".format(succ_num),
                 "Fail count : {} \n".format(fail_num)])
