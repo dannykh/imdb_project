@@ -111,7 +111,7 @@ class Movie(dict):
     def _get_basic_data(self):
         self['id'], self['title'], self['year'], self['imdb index'], self['imdb id'], \
             self['rating'], self['votes'] = self.conn.fetch_scalar(
-                _movie_queries['get_movie_main'], self['id'])
+            _movie_queries['get_movie_main'], self['id'])
 
     def _get_cast(self):
         cast = self.conn.fetch_vec(_movie_queries['get_cast_full'], self['id'])
@@ -136,7 +136,7 @@ class Movie(dict):
             info_type.has_key(info)]
 
         all_info = self.conn.fetch_vec(_movie_queries['get_info'], self['id'],
-                tuple(x[1] for x in info_ids))
+            tuple(x[1] for x in info_ids))
 
         for info, info_id in info_ids:
             if self[info] is None:
@@ -161,10 +161,10 @@ class Movie(dict):
 
     def _get_actors(self):
         self['actors'] = self.conn.fetch_vec(_movie_queries['get_actors_ordered'],
-                self['id'])
+            self['id'])
 
     def _normalize(self):
-        # TODO convert currencies
+        # TODO convert currencies better
         self['mpaa'] = [info.split(' ')[1] for info in self['mpaa']]
 
         def __unlist(key):
@@ -178,8 +178,12 @@ class Movie(dict):
         monetary = ['gross', 'weekend gross', 'budget']
         for key in monetary:
             if self.has_key(key) and self[key] is not None and self[key]:
-                m = re.findall(r"([1-9][0-9,]+(\.\d)?)", self[key])
-                self[key] = float(''.join(m[0][0].split(',')))
+                if self[key].find('$') == -1 and self[key].find("€") == -1:
+                    self[key] = None
+                else:
+                    coef = 1.12 if self[key].find("€") != -1 else 1
+                    m = re.findall(r"([1-9][0-9,]+(\.\d)?)", self[key])
+                    self[key] = float(''.join(m[0][0].split(','))) * coef
 
     def __repr__(self):
         return self['title'] + " (" + str(self['year']) + "). id=" + str(self['id'])
