@@ -45,13 +45,13 @@ data_files = map(lambda x: base_d + x, data_files)
 
 if len(data_files) > 1:
     data = reduce(lambda left, right: pd.merge(left, right, on='id'),
-        (pd.read_csv(data_file) for data_file in data_files))
+            (pd.read_csv(data_file) for data_file in data_files))
 else:
     data = pd.read_csv(data_files[0])
 
 N_SAMPLES = len(data)
 train, test = data.head(int(N_SAMPLES * (1 - TEST_SIZE))), data.tail(
-    int(N_SAMPLES * TEST_SIZE))
+        int(N_SAMPLES * TEST_SIZE))
 
 train_stats = [
     ('variance', np.var(test['rating']))
@@ -102,4 +102,4 @@ for estimator_name, estimator in estimators:
 
 df = pd.DataFrame(results, [met[0] for met in metrics])
 df.to_csv(data_dir.get_file('results.csv'))
-#df.to_csv(data_dir.get_file('results.txt'), "|")
+# df.to_csv(data_dir.get_file('results.txt'), "|")
