@@ -1,4 +1,4 @@
-__author__ = 'Danny'
+# -*- coding: utf-8 -*-
 
 from prep.imdb_sql_consts import movie_role, info_type, company_type, link_type
 import re
@@ -164,7 +164,6 @@ class Movie(dict):
             self['id'])
 
     def _normalize(self):
-        # TODO convert currencies better
         self['mpaa'] = [info.split(' ')[1] for info in self['mpaa']]
 
         def __unlist(key):
@@ -178,10 +177,10 @@ class Movie(dict):
         monetary = ['gross', 'weekend gross', 'budget']
         for key in monetary:
             if self.has_key(key) and self[key] is not None and self[key]:
-                if self[key].find('$') == -1 and self[key].find("€") == -1:
+                if self[key].find('$') == -1 and self[key].find("usd") == -1:
                     self[key] = None
                 else:
-                    coef = 1.12 if self[key].find("€") != -1 else 1
+                    coef = 1.12 if self[key].find("aaa") != -1 else 1
                     m = re.findall(r"([1-9][0-9,]+(\.\d)?)", self[key])
                     self[key] = float(''.join(m[0][0].split(','))) * coef
 

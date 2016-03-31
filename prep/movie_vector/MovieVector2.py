@@ -1,7 +1,7 @@
 import numpy as np
 
 import prep.movie_vector.vector_utils_2 as utils2
-from MovieVector import MovieVectorGenerator, MISSING_FEAT
+from movievector import MovieVectorGenerator, MISSING_FEAT
 from prep.IMDB import IMDB
 
 

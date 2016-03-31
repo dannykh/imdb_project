@@ -1,367 +1,0 @@
- 2286609 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2237182 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2232246 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2321506 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2327899 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2397652 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2334638 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2429020 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2497490 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2464801 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2422996 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2416794 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2552336 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2586372 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2583688 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2553857 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2636546 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2671418 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2682302 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2695838 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2695404 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2673873 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2623913 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2689468 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2746512 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2759271 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2755324 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2752729 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2706509 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2731570 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2850630 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 2878009 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2961067 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 2997105 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 41, in update
-    self.get_producers()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 71, in get_producers
-    raise MovieError(self.id, "Movie has no producers")
-MovieError
- 
- 2920970 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 3071823 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 54, in generate_csv
-    movie_vec = movie_vectorizer.get_vector(movie)
-  File "D:\work\AI_project\proj\prep\MovieVector2.py", line 44, in get_vector
-    assert len(movie_vec) == len(self.VECTOR_FORMAT)
-AssertionError
- 
- 3052849 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 3193366 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 3274578 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
- 3207021 : <> 
- Traceback (most recent call last):
-  File "D:\work\AI_project\proj\prep\CSVDataGenerator.py", line 53, in generate_csv
-    movie.update()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 39, in update
-    self.get_stars()
-  File "D:\work\AI_project\proj\prep\SqlMovie.py", line 55, in get_stars
-    raise MovieError(self.id, "Movie has no stars")
-MovieError
- 
-

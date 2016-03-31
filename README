@@ -1,0 +1,28 @@
+IMDb rating prediction.
+
+The purpose of this project is to study the extent to which a movie's IMDb rating could be
+predicted, given the IMDb database.
+To achieve this goal, the project handles all aspects starting with retrieval of the data
+from IMDb, through parsing movies to numeric feature vectors up to producing regressors
+trained on given movie's and comparing them.
+
+Usage:
+The project should be acquired along with a full local IMDb MySQL database.
+Relevant settings should be updated in settings.py.
+To create features for a movie, see instructions in movie_vector package. Once a movieVector
+is created, it should be passed to vector_file_generation.py, and the latter should be activated
+under instructions written there.
+Finally, given new (or existing) feature vectors for all movies, proceed to learning
+package to test the features by running different learning algorithms trained on them.
+Detailed instructions in relevant modules.
+Important : Movie class supplies an api for the database, so all simple data about movies
+is easily acquired from there. More complex forms of data (like rating averages) should be
+Important: MySQL MUST be running during feature generation phase, as interaction with
+the db is involved in the process of creating feature vectors.
+acquired directly from the database using queries. Unfortunately the database is not
+well documented and somewhat hard to understand at first.
+
+The general workflow is :
+movie_vector (package) -> vector_file_generation -> learning.regressor_analysis
+These modules are well documented and explained.
+

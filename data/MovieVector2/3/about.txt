@@ -1,9 +1,0 @@
-Vector type : MovieVector2
-Vector desc : [rating,[stars1-5 simple avg],directors simple avg,[binary genres]]
-db : imdb_3
-
-Runtime : 0:00:39.281000
-total movies : 2174
-Success count : 2134 
-Fail count : 40 
-

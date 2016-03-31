@@ -1,3 +1,13 @@
+"""
+vector_file_generation
+
+This module handles creation of csvs containing movie feature vectors.
+
+Usage:
+Import desired MoiveVectorGenerator implementation as described in movie_vector package.
+Instantiate DataFileGenerator with movie_vectorizer as the imported class.
+R
+"""
 import csv
 import traceback
 from datetime import timedelta
@@ -16,8 +26,7 @@ class DataFileGenerator(object):
     def fix(self, data_version_num=None):
         raise NotImplementedError
 
-    def generate_csv(self, movie_vectorizer, movie_generator=None,
-            limit=None):
+    def generate_csv(self, movie_vectorizer, movie_generator=None, limit=None):
         """
         :param movie_vectorizer: Instance of MovieVectorGenerator
         :param movie_generator: Generator of Movies
@@ -65,7 +74,6 @@ class DataFileGenerator(object):
                 "Runtime : {}\n".format(
                     timedelta(seconds=end_time - start_time)),
 
-
                 "total movies : {}\n".format(total),
                 "Success count : {} \n".format(succ_num),
                 "Fail count : {} \n".format(fail_num)])
@@ -73,7 +81,7 @@ class DataFileGenerator(object):
         return data_dir + "data_raw.csv"
 
 
-from prep.movie_vector.MovieVector_y import MovieVectorGenerator_y
+from prep.movie_vector.movievector_y import MovieVectorGenerator_y
 
 movie_vec_ver = MovieVectorGenerator_y
 

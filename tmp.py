@@ -1,6 +1,6 @@
 __author__ = 'Danny'
 
-from prep.movie_vector.MovieVector_y import MovieVectorGenerator_y
+from prep.movie_vector.movievector_y import MovieVectorGenerator_y
 from prep.IMDB import IMDB
 from prep.Movie import Movie
 

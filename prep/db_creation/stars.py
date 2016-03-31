@@ -60,8 +60,8 @@ def create_stars_csv(limit=99999):
                 failed += 1
                 fail_fp.write(sql_id + '\n')
                 log_fp.write(
-                        " AT <{}> : {}  \n {} \n".format(sql_id, e,
-                                traceback.format_exc()))
+                    " AT <{}> : {}  \n {} \n".format(sql_id, e,
+                        traceback.format_exc()))
 
 
 def process_star(conn, mov_id, star, index):
@@ -102,8 +102,8 @@ def fill_stars(stars_csv='http_linkers/stars.csv'):
             except Exception, e:
                 fail_fp.write(imdb_id + '\n')
                 log_fp.write(
-                        " AT <{}> : {}  \n {} \n".format(imdb_id, e,
-                                traceback.format_exc()))
+                    " AT <{}> : {}  \n {} \n".format(imdb_id, e,
+                        traceback.format_exc()))
 
 
 def update_stars_csv():

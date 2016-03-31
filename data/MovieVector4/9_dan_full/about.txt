@@ -1,6 +1,0 @@
-db : imdb_3
-
-Runtime : 2:34:49.610000
-total movies : 2174
-Success count : 2136 
-Fail count : 38 

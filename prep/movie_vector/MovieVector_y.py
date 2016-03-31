@@ -1,5 +1,5 @@
 import prep.movie_vector.vector_utils_y_changed as utils_y
-from MovieVector import MovieVectorGenerator
+from movievector import MovieVectorGenerator
 from prep.IMDB import IMDB
 from prep.vector_utils_4 import get_movie_features, get_stars_avg_prio
 #from vector_utils_4 import get_movie_features

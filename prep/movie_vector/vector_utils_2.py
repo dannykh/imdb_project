@@ -1,7 +1,7 @@
 from numpy import average
 
 import prep.imdb_sql_consts as consts
-from prep.movie_vector.MovieVector import MovieVectorError
+from prep.movie_vector.movievector import MovieVectorError
 from prep.queries import queries_2
 
 

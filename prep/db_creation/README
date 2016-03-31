@@ -1,0 +1,7 @@
+This package is responsible for creation and upkeep of the local IMDB database.
+The DB creation process is complicated and long. First there must exist a local
+MySQL db created by the IMDbPY package. Then essentially only db_setup.py need be run,
+however one try might result in errors, and several attempts (perhaps fine tuned) are required.
+
+It is recommended to avoid using this package unless the user knows exactly what's going on.
+Best obtain a copy of the ready database ( <2gb ).

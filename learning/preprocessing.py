@@ -1,14 +1,20 @@
 """
-All should be in form of a pipeline starting with a class implementing fit,
-and transform.
+This module handles preprocessing of the feature vector set.
+This includes scaling and normalization.
+The output of this module is a pipeline transforming feature vectors from their raw
+state as it is in data csvs to a format ready to be passed as input to a learning algorithm.
+
+
+Transformers added to the pipeline must implement TransformerMixin, BaseEstimator as seen
+in examples here.
 fit() does nothing (returns self )
-transform : receives a list of movies and returns and returns a list of
-processed vectors, featurizing the movies. Order between movies should be kept
+transform : receives a list of movies and returns a list of
+processed vectors, featurizing the movies. Order between movies must be kept
 """
 
 from sklearn.base import TransformerMixin, BaseEstimator
 from sklearn.pipeline import Pipeline, FeatureUnion, make_pipeline
-from sklearn.preprocessing import OneHotEncoder, Imputer, StandardScaler,MinMaxScaler
+from sklearn.preprocessing import OneHotEncoder, Imputer, StandardScaler, MinMaxScaler
 from sklearn.feature_extraction import DictVectorizer
 import numpy as np
 import pandas as pd
@@ -87,15 +93,13 @@ avgs = Pipeline([
     ('avg_get', Averages()),
     ('Imputer', Imputer()),
     ('normalization', StandardScaler()),
-    ('scaling',MinMaxScaler((-1,1)))
+    ('scaling', MinMaxScaler((-1, 1)))
 ])
 
 features = FeatureUnion([
     ('avgs_simple', avgs)
-    #('controls', AddControl())
+    # ('controls', AddControl())
 ])
-
-
 
 if __name__ == "__main__":
     from prep.IMDB import IMDB

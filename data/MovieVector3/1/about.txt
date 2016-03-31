@@ -1,6 +1,0 @@
-db : imdb_3
-
-Runtime : 0:00:03.078000
-total movies : 10
-Success count : 10 
-Fail count : 0 

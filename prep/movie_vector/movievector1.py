@@ -1,4 +1,4 @@
-from MovieVector import MovieVectorError, MovieVectorGenerator
+from movievector import MovieVectorError, MovieVectorGenerator
 from prep.IMDB import IMDB
 import prep.imdb_sql_consts
 from prep.utils import vec_for_movie

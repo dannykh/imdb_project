@@ -1,5 +1,4 @@
 from SQLconnection import SQLconnection
-from SqlMovie import SqlMovie
 import settings as db
 from Movie import Movie
 import cPickle as pkl

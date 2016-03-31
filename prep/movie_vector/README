@@ -1,0 +1,13 @@
+movie_vector
+
+This package handles the transformation of a Movie object to a vector of features.
+It is comprised of a base MovieVector module (abstract), and implementations of it.
+movievector describes HOW to implement a transformer. All other modules in the package
+are implementations, i.e concrete transformers in the format : movievector[version id],
+or common util modules serving the transformers.
+The motivation to this architecture is to allow multiple versions of transformers to be
+developed concurrently and independently, resulting in faster and distributed movie
+parsing.
+
+To add a transformer, simply create a module named movievector[unique version id],
+which has a class implementing MovieVectorGenerator class in movievector.

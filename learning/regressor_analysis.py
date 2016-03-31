@@ -1,3 +1,10 @@
+"""
+This module handles the analysis and comparison of regressors used in the project.
+Each regressor is trained and tested on vectors processed in preprocessing module.
+
+Settings should be set to run the test.
+Output will be in data/analysis/run_id (relevant run_id will probably be the biggest/last).
+"""
 import pandas as pd
 import numpy as np
 import pandas as pd
@@ -12,12 +19,16 @@ from data import meta
 import csv
 # SETTINGS ------------------------------------------------
 
-from features_1 import features
+from preprocessing import features
 
+# If set to True, a csv with actual rating vs prediction will be generated as well.
 RAW_RATING_OUTPUT = False
 
+# Base dir, to which all names in data_files are relative.
 base_d = "../"
 
+# Files from which to draw feature vectors. The vectors are concatenated in the order
+# they appear in the list. It is IMPORTANT that rating.csv is the first file on the list.
 data_files = [
     'data/MovieVector4/Parts/rating.csv',
     #'data/MovieVector4/Parts/basic_data.csv',
@@ -27,8 +38,11 @@ data_files = [
     'data/MovieVector4/Parts/y_v_avg.csv'
 ]
 
+# Portion of movies to be taken as test set for model evaluation.
+# Consequently, training set will be of size (1-TEST_SIZE)*(num of movies in db)
 TEST_SIZE = 0.2
 
+# List of estimators to be examined
 estimators = [
     ("Dummy", dummy.DummyRegressor()),
     ("Least Squares", linear_model.LinearRegression()),
@@ -38,6 +52,7 @@ estimators = [
     ("Random Forest", RandomForestRegressor())
 ]
 
+# Metrics by which to examine the estimators.
 metrics = [
     ("mean_absolute_error", mean_absolute_error),
     ("mean_squared_error", mean_squared_error),
@@ -63,7 +78,7 @@ train_stats = [
     ('variance', np.var(test['rating']))
 ]
 
-data_dir = meta.DataDirControl('analysis')
+data_dir = meta.DataDirControl('results')
 data_path = data_dir.create_version()
 
 with open(data_dir.get_file("about.txt"), 'wb') as fp:
